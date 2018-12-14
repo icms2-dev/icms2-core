@@ -70,9 +70,6 @@
         <?php if ($dataset && !empty($current_dataset['title'])){ ?>
             <span> / <?php echo $current_dataset['title']; ?></span>
         <?php } ?>
-        <?php if (!empty($ctype['options']['is_rss']) && $this->controller->isControllerEnabled('rss')){ ?>
-            <a class="inline_rss_icon" title="RSS" href="<?php echo href_to('rss', 'feed', $ctype['name']) . $rss_query; ?>"></a>
-        <?php } ?>
     </h1>
 <?php } ?>
 

@@ -76,23 +76,6 @@ class actionAuthRegister extends cmsAction {
                 }
 
                 //
-                // проверяем код приглашения
-                //
-                if ($this->options['is_reg_invites'] || $this->request->has('inv')){
-                    $invite = $this->model->getInviteByCode($user['inv']);
-                    if (!$invite) {
-                        $errors['inv'] = LANG_REG_WRONG_INVITE_CODE;
-                    } else {
-                        if ($this->options['is_invites_strict'] &&
-                                $this->options['is_reg_invites'] && ($invite['email'] != $user['email'])) {
-                            $errors['inv'] = LANG_REG_WRONG_INVITE_CODE_EMAIL;
-                        } else {
-                            $user['inviter_id'] = $invite['user_id'];
-                        }
-                    }
-                }
-
-                //
                 // проверяем допустимость e-mail, имени и IP
                 //
                 if (!$this->isEmailAllowed($user['email'])){
@@ -148,24 +131,6 @@ class actionAuthRegister extends cmsAction {
 
 					$user['id'] = $result['id'];
 
-                    // если использовали код приглашения
-                    if(!empty($invite['id'])){
-
-                        // для декремента счётчика инвайтов, если приглашение по ссылке
-                        if(empty($invite['email'])){
-                            $this->model->markInviteSended($invite['id'], $invite['user_id'], $user['email']);
-                        }
-
-                        // удаляем инвайт, раз им воспользовались
-                        $this->model->deleteInvite($invite['id']);
-
-                        // уведомляем того, чей инвайт
-                        $this->model_messages->addNotice(array($invite['user_id']), array(
-                            'content' => sprintf(LANG_AUTH_INVITE_NOTIFY, href_to_profile($user), $user['nickname'])
-                        ));
-
-                    }
-
                     cmsUser::addSessionMessage(LANG_REG_SUCCESS, 'success');
 
                     cmsUser::setUPS('first_auth', 1, $user['id']);
@@ -177,13 +142,14 @@ class actionAuthRegister extends cmsAction {
 
                         $to = array('email' => $user['email'], 'name' => $user['nickname']);
                         $letter = array('name' => 'reg_verify');
-
+						/*
                         $this->controller_messages->sendEmail($to, $letter, array(
                             'nickname'    => $user['nickname'],
                             'page_url'    => href_to_abs('auth', 'verify', $user['pass_token']),
                             'pass_token'  => $user['pass_token'],
                             'valid_until' => html_date(date('d.m.Y H:i', time() + ($verify_exp * 3600)), true)
                         ));
+						*/
 
                         cmsUser::addSessionMessage(sprintf(LANG_REG_SUCCESS_NEED_VERIFY, $user['email']), 'info');
 

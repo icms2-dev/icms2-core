@@ -230,33 +230,6 @@
 
 /* ========================================================================== */
 
-#user_profile .friends-list {
-    overflow: hidden;
-    max-width: 200px;
-}
-
-#user_profile .friends-list a {
-    text-decoration:none;
-    display: block;
-    float:left;
-    overflow: hidden;
-    margin-right: 1px;
-    margin-bottom: 1px;
-}
-
-#user_profile .friends-list a span {
-    display: block;
-    float: left;
-    height:32px;
-    line-height:32px;
-}
-
-#user_profile .friends-list a:hover {
-    opacity: 0.75;
-}
-
-/* ========================================================================== */
-
 #user_profile #information{
     padding:0px;
 }
@@ -309,11 +282,6 @@
     color:#CCCCCC;
     padding-left:5px;
     font-size:12px;
-}
-
-#users_karma_log_list .comment{
-    margin-top: 4px;
-    line-height: 18px;
 }
 
 #users_karma_log_list .value{

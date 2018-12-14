@@ -15,9 +15,6 @@
     <?php $this->addMainTplJSName('jquery-modal'); ?>
     <?php $this->addMainTplJSName('core'); ?>
     <?php $this->addMainTplJSName('modal'); ?>
-    <?php if (cmsUser::isLogged()){ ?>
-        <?php $this->addMainTplJSName('messages'); ?>
-    <?php } ?>
     <?php $this->head(); ?>
     <meta name="csrf-token" content="<?php echo cmsForm::getCSRFToken(); ?>" />
     <meta name="generator" content="InstantCMS" />

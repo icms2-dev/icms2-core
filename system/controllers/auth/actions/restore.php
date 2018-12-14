@@ -57,7 +57,7 @@ class actionAuthRestore extends cmsAction {
                     $pass_token = string_random(32, $user['email']);
 
                     $users_model->updateUserPassToken($user['id'], $pass_token);
-
+					/*
                     $messenger = cmsCore::getController('messages');
                     $to = array('email' => $user['email'], 'name' => $user['nickname']);
                     $letter = array('name' => 'reg_restore');
@@ -67,7 +67,7 @@ class actionAuthRestore extends cmsAction {
                         'page_url' => href_to_abs('auth', 'reset', $pass_token),
                         'valid_until' => html_date(date('d.m.Y H:i', time() + (24 * 3600)), true),
                     ));
-
+					*/
                     cmsUser::addSessionMessage(LANG_TOKEN_SENDED, 'success');
 
                 }

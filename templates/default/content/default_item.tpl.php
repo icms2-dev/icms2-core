@@ -79,19 +79,11 @@
         if ($hooks_html) { echo html_each($hooks_html); }
     ?>
 
-    <?php if (!empty($item['show_tags'])){ ?>
-        <div class="tags_bar">
-            <?php echo html_tags_bar($item['tags'], 'content-'.$ctype['name']); ?>
-        </div>
-    <?php } ?>
-
     <?php
-        $show_bar = !empty($item['rating_widget']) ||
-                    $fields['date_pub']['is_in_item'] ||
+        $show_bar = $fields['date_pub']['is_in_item'] ||
                     $fields['user']['is_in_item'] ||
 					!empty($ctype['options']['hits_on']) ||
-					!$item['is_pub'] ||
-                    !$item['is_approved'];
+					!$item['is_pub'];
     ?>
 
     <?php if ($ctype['item_append_html']){ ?>
@@ -100,11 +92,6 @@
 
     <?php if ($show_bar){ ?>
         <div class="info_bar">
-            <?php if (!empty($item['rating_widget'])){ ?>
-                <div class="bar_item bi_rating">
-                    <?php echo $item['rating_widget']; ?>
-                </div>
-            <?php } ?>
             <?php if ($fields['date_pub']['is_in_item']){ ?>
                 <div class="bar_item bi_date_pub" title="<?php html( $fields['date_pub']['title'] ); ?>">
                     <?php echo $fields['date_pub']['html']; ?>
@@ -135,11 +122,6 @@
                     <div class="share">
                         <?php echo $ctype['options']['share_code']; ?>
                     </div>
-                </div>
-            <?php } ?>
-            <?php if (!$item['is_approved']){ ?>
-                <div class="bar_item bi_not_approved">
-                    <?php echo $item['is_draft'] ? LANG_CONTENT_DRAFT_NOTICE : LANG_CONTENT_NOT_APPROVED; ?>
                 </div>
             <?php } ?>
         </div>

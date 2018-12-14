@@ -1,8 +1,8 @@
 <?php
-    $this->addCSS('templates/default/css/datatree.css');
-    $this->addJS('templates/default/js/jquery-cookie.js');
-    $this->addJS('templates/default/js/datatree.js');
-    $this->addJS('templates/default/js/admin-content.js');
+    $this->addTplCSSName('datatree');
+    $this->addTplJSName('jquery-cookie');
+    $this->addTplJSName('datatree');
+    $this->addTplJSName('admin-content');
 
     $this->setPageTitle(LANG_CP_SECTION_CONTENT);
 
@@ -33,12 +33,6 @@
         'class' => 'settings',
         'title' => LANG_CONFIG,
         'href'  => $this->href_to('ctypes', array('edit'))
-    ));
-
-    $this->addToolButton(array(
-        'class' => 'logs',
-        'title' => LANG_MODERATION_LOGS,
-        'href'  => $this->href_to('controllers', array('edit', 'moderation', 'logs', 'content'))
     ));
 
     $this->addToolButton(array(
@@ -148,7 +142,7 @@
                             icms.datagrid.setURL("<?php echo $this->href_to('content', array('items_ajax')); ?>/" + key[0] + "/" + key[1]);
                             $('.cp_toolbar .filter a').attr('href', "<?php echo $this->href_to('content', array('filter')); ?>/" + key[0]);
                             $('.cp_toolbar .settings a').attr('href', "<?php echo $this->href_to('ctypes', array('edit')); ?>/" + key[0]);
-                            $('.cp_toolbar .add a').attr('href', "<?php echo $this->href_to('content', array('item_add')); ?>/" + key[0] + "/" + key[1]);
+                            $('.cp_toolbar .add a').attr('href', "<?php echo $this->href_to('content', array('item_add')); ?>/" + key[0] + '/' + key[1]+'?back=<?php echo $this->href_to('content'); ?>');
                             $('.cp_toolbar .add_folder a').attr('href', "<?php echo $this->href_to('content', array('cats_add')); ?>/" + key[0] + "/" + key[1]);
                             $('.cp_toolbar .edit_folder a').attr('href', "<?php echo $this->href_to('content', array('cats_edit')); ?>/" + key[0] + "/" + key[1]);
                             $('.cp_toolbar .delete_folder a').attr('href', "<?php echo $this->href_to('content', array('cats_delete')); ?>/" + key[0] + "/" + key[1] + '?csrf_token='+icms.forms.getCsrfToken());
@@ -156,7 +150,7 @@
                             $('.cp_toolbar .move a').data('url', "<?php echo $this->href_to('content', array('item_move')); ?>/" + key[0] + "/" + key[1]);
                             $('.cp_toolbar .delete a').data('url', "<?php echo $this->href_to('content', array('item_delete')); ?>/" + key[0] + '?csrf_token='+icms.forms.getCsrfToken());
                             $('.cp_toolbar .basket_put a').data('url', "<?php echo $this->href_to('content', array('item_trash_put')); ?>/" + key[0] + '?csrf_token='+icms.forms.getCsrfToken());
-                            $('.cp_toolbar .logs a').attr('href', "<?php echo $this->href_to('controllers', array('edit', 'moderation', 'logs', 'content')); ?>/" + key[0]);
+                            $('.cp_toolbar .logs a').attr('href', "<?php echo $this->href_to('controllers', array('edit', 'logs', 'content')); ?>/" + key[0]);
                             if (key[1] == 1){
                                 $('.cp_toolbar .edit_folder a').hide();
                                 $('.cp_toolbar .delete_folder a').hide();

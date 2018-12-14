@@ -1,8 +1,8 @@
 <?php
     $this->setPageTitle(LANG_ADMIN_CONTROLLER);
-    $this->addJS('templates/default/js/admin-chart.js');
-    $this->addJS('templates/default/js/admin-dashboard.js');
-    $this->addJS('templates/default/js/jquery-cookie.js');
+    $this->addTplJSName('admin-chart');
+    $this->addTplJSName('admin-dashboard');
+    $this->addTplJSName('jquery-cookie');
 ?>
 <h1><?php echo LANG_ADMIN_CONTROLLER; ?></h1>
 

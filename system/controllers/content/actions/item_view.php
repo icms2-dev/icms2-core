@@ -2,8 +2,6 @@
 
 class actionContentItemView extends cmsAction {
 
-    private $viewed_moderators = false;
-
     public function run(){
 
         $props = $props_values = false;
@@ -53,70 +51,26 @@ class actionContentItemView extends cmsAction {
         }
 
         // добавляем Last-Modified
-        if(!$this->cms_user->is_logged && (!$ctype['is_comments'] || !$item['is_comments_on'])){
+        if(!$this->cms_user->is_logged){
             cmsCore::respondIfModifiedSince($item['date_last_modified']);
         }
 
-        // Проверяем прохождение модерации
-        $is_moderator = $this->cms_user->is_admin;
-        if(!$is_moderator && $this->cms_user->is_logged){
-            $is_moderator = cmsCore::getModel('moderation')->userIsContentModerator($ctype['name'], $this->cms_user->id);
-        }
         // на модерации или в черновиках
         if (!$item['is_approved']){
 
-            $item_view_notice = $item['is_draft'] ? LANG_CONTENT_DRAFT_NOTICE : LANG_MODERATION_NOTICE;
+            $item_view_notice = $item['is_draft'] ? LANG_CONTENT_DRAFT_NOTICE : '';
 
-            if (!$is_moderator && $this->cms_user->id != $item['user_id']){
+            if ($this->cms_user->id != $item['user_id']){
 
                 return cmsCore::errorForbidden($item_view_notice, true);
 
             }
-
-            // если запись на модерации и смотрим автором, проверяем кем просмотрена запись уже
-            if (!$item['is_draft'] && ($this->cms_user->id == $item['user_id'] || $is_moderator)){
-
-                // ставим флаг, что модератор уже смотрит, после этого изъять из модерации нельзя
-                if ($is_moderator){
-
-                    cmsUser::setUPS($this->getUniqueKey(array($ctype['name'], 'moderation', $item['id'])), time());
-
-                    $item_view_notice = LANG_MODERATION_NOTICE_MODER;
-
-                }
-
-                $this->viewed_moderators = cmsUser::getSetUPS($this->getUniqueKey(array($ctype['name'], 'moderation', $item['id'])));
-
-                if(isset($this->viewed_moderators[$this->cms_user->id])){ unset($this->viewed_moderators[$this->cms_user->id]); }
-
-                if($this->viewed_moderators){
-
-                    $viewed_moderators = $this->model_users->filterIn('id', array_keys($this->viewed_moderators))->getUsers();
-
-                    $moderator_links = array();
-
-                    foreach ($viewed_moderators as $viewed_moderator) {
-                        $moderator_links[] = '<a href="'.href_to_profile($viewed_moderator).'">'.$viewed_moderator['nickname'].'</a>';
-                    }
-
-                    $item_view_notice .= sprintf(
-                        LANG_MODERATION_NOTICE_VIEW,
-                        (count($moderator_links) > 1 ? LANG_MODERATORS : LANG_MODERATOR),
-                        implode(', ', $moderator_links),
-                        (count($moderator_links) > 1 ? LANG_MODERATION_VIEWS : LANG_MODERATION_VIEW),
-                        (count($moderator_links) == 1 ? ' '.mb_strtolower(string_date_format($this->viewed_moderators[$viewed_moderator['id']], true)) : '')
-                    );
-
-                }
-
-            }
-
             cmsUser::addSessionMessage($item_view_notice, 'info');
 
         }
 
         // общие права доступа на просмотр
-        if(!$is_moderator && $this->cms_user->id != $item['user_id']){
+        if($this->cms_user->id != $item['user_id']){
 
             if(!$this->checkListPerm($ctype['name'])){
                 return cmsCore::errorForbidden();
@@ -126,7 +80,7 @@ class actionContentItemView extends cmsAction {
 
         // Проверяем публикацию
         if (!$item['is_pub']){
-            if (!$is_moderator && $this->cms_user->id != $item['user_id']){ return cmsCore::error404(); }
+            if ($this->cms_user->id != $item['user_id']){ return cmsCore::error404(); }
         }
 
         // Проверяем, что не удалено
@@ -135,7 +89,7 @@ class actionContentItemView extends cmsAction {
             $allow_restore = (cmsUser::isAllowed($ctype['name'], 'restore', 'all') ||
                 (cmsUser::isAllowed($ctype['name'], 'restore', 'own') && $item['user_id'] == $this->cms_user->id));
 
-            if (!$is_moderator && !$allow_restore){ return cmsCore::error404(); }
+            if (!$allow_restore){ return cmsCore::error404(); }
 
             cmsUser::addSessionMessage(LANG_CONTENT_ITEM_IN_TRASH, 'info');
 
@@ -147,7 +101,6 @@ class actionContentItemView extends cmsAction {
             $is_parent_viewable_result = cmsEventsManager::hook('content_view_hidden', array(
                 'viewable'     => true,
                 'item'         => $item,
-                'is_moderator' => $is_moderator,
                 'ctype'        => $ctype
             ));
 
@@ -374,33 +327,6 @@ class actionContentItemView extends cmsAction {
 
         }
 
-        // Рейтинг
-        if ($ctype['is_rating'] &&  $this->isControllerEnabled('rating')){
-
-            $rating_controller = cmsCore::getController('rating', new cmsRequest(array(
-                'target_controller' => $this->name,
-                'target_subject' => $ctype['name']
-            ), cmsRequest::CTX_INTERNAL));
-
-            $is_rating_allowed = cmsUser::isAllowed($ctype['name'], 'rate') && ($item['user_id'] != $this->cms_user->id);
-
-            $item['rating_widget'] = $rating_controller->getWidget($item['id'], $item['rating'], $is_rating_allowed);
-
-        }
-
-        // Комментарии
-        if ($ctype['is_comments'] && $item['is_approved'] && $item['is_comments_on'] &&  $this->isControllerEnabled('comments')){
-
-            $comments_controller = cmsCore::getController('comments', new cmsRequest(array(
-                'target_controller' => $this->name,
-                'target_subject' => $ctype['name'],
-                'target_user_id' => $item['user_id'],
-                'target_id' => $item['id']
-            ), cmsRequest::CTX_INTERNAL));
-
-            $item['comments_widget'] = $comments_controller->getWidget();
-
-        }
 
         // Информация о модераторе для админа и владельца записи
         if ($item['approved_by'] && ($this->cms_user->is_admin || $this->cms_user->id == $item['user_id'])){
@@ -492,7 +418,7 @@ class actionContentItemView extends cmsAction {
 
         }
 
-        $tool_buttons = $this->getToolButtons($ctype, $item, $is_moderator, $childs);
+        $tool_buttons = $this->getToolButtons($ctype, $item, false, $childs);
 
         if($tool_buttons){
             $this->cms_template->addMenuItems('toolbar', $tool_buttons);
@@ -518,7 +444,6 @@ class actionContentItemView extends cmsAction {
             'props_fields'     => $props_fields,
             'props_fieldsets'  => $props_fieldsets,
             'item'             => $item,
-            'is_moderator'     => $is_moderator,
             'user'             => $this->cms_user,
             'childs'           => $childs
         ));
@@ -529,26 +454,7 @@ class actionContentItemView extends cmsAction {
 
         $tool_buttons = array();
 
-        if (!$item['is_approved'] && !$item['is_draft'] && $is_moderator){
-            $tool_buttons['accept'] = array(
-                'title'   => LANG_MODERATION_APPROVE,
-                'options' => array('class' => 'accept'),
-                'url'     => href_to($ctype['name'], 'approve', $item['id'])
-            );
-            $tool_buttons['return_for_revision'] = array(
-                'title'   => LANG_MODERATION_RETURN_FOR_REVISION,
-                'options' => array('class' => 'return_for_revision ajax-modal'),
-                'url'     => href_to($ctype['name'], 'return_for_revision', $item['id'])
-            );
-        }
 
-        if (!$item['is_approved'] && !$item['is_draft'] && !$this->viewed_moderators && $item['user_id'] == $this->cms_user->id){
-            $tool_buttons['return'] = array(
-                'title'   => LANG_MODERATION_RETURN,
-                'options' => array('class' => 'return', 'confirm' => LANG_CONTENT_RETURN_CONFIRM),
-                'url'     => href_to($ctype['name'], 'return', $item['id'])
-            );
-        }
 
         if ($item['is_approved'] || $item['is_draft'] || $is_moderator){
 
@@ -614,15 +520,6 @@ class actionContentItemView extends cmsAction {
                         'options' => array('class' => 'delete', 'confirm' => sprintf(LANG_CONTENT_DELETE_ITEM_CONFIRM, $ctype['labels']['create'])),
                         'url'     => href_to($ctype['name'], 'delete', $item['id']).'?csrf_token='.cmsForm::getCSRFToken()
                     );
-
-                } else {
-
-                    $tool_buttons['refuse'] = array(
-                        'title'   => sprintf(LANG_MODERATION_REFUSE, $ctype['labels']['create']),
-                        'options' => array('class' => 'delete ajax-modal'),
-                        'url'     => href_to($ctype['name'], 'delete', $item['id']).'?csrf_token='.cmsForm::getCSRFToken()
-                    );
-
                 }
 
             }

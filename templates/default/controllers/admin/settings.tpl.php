@@ -56,6 +56,7 @@
             theme = false;
         }
         var theme_config_link = $(obj).parent().find('.hint a.theme_settings');
+
         if(theme){
             theme_config_link.show().attr('href', theme_config_link.data('url')+'/'+theme);
         } else {

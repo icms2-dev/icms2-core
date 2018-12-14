@@ -4,12 +4,6 @@ function routes_content(){
     return array(
 
         array(
-            'pattern'   => '/^([a-z0-9\-_]+)\/from_friends$/i',
-            'action'    => 'items_from_friends',
-            1           => 'ctype_name'
-        ),
-
-        array(
             'pattern'   => '/^([a-z0-9\-_]+)\/bind_form\/([a-z0-9\-_]+)\/([0-9]+)$/i',
             'action'    => 'item_bind_form',
             1           => 'ctype_name',
@@ -71,20 +65,6 @@ function routes_content(){
         array(
             'pattern'   => '/^([a-z0-9\-_]+)\/edit\/([0-9]+)$/i',
             'action'    => 'item_edit',
-            1           => 'ctype_name',
-            2           => 'id'
-        ),
-
-        array(
-            'pattern'   => '/^([a-z0-9\-_]+)\/approve\/([0-9]+)$/i',
-            'action'    => 'item_approve',
-            1           => 'ctype_name',
-            2           => 'id'
-        ),
-
-        array(
-            'pattern'   => '/^([a-z0-9\-_]+)\/return_for_revision\/([0-9]+)$/i',
-            'action'    => 'item_return_for_revision',
             1           => 'ctype_name',
             2           => 'id'
         ),

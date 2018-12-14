@@ -92,24 +92,13 @@
                         </div>
                     <?php } ?>
 
-                    <?php if ($dataset_name == 'popular') { ?>
 
-                        <?php echo $profile['friends_count'] ? html_spellcount($profile['friends_count'], LANG_USERS_FRIENDS_SPELLCOUNT) : '&mdash;'; ?>
-
-                    <?php } elseif ($dataset_name == 'rating') { ?>
-
-                        <span class="rate_value karma <?php echo html_signed_class($profile['karma']); ?>" title="<?php echo LANG_KARMA; ?>"><?php echo html_signed_num($profile['karma']); ?></span> /
-                        <span class="rate_value rating" title="<?php echo LANG_RATING; ?>"><?php echo $profile['rating']; ?></span>
-
-                    <?php } else { ?>
 
                         <?php if (!$profile['is_online']){ ?>
                             <span><?php echo string_date_age_max($profile['date_log'], true); ?></span>
                         <?php } else { ?>
                             <span class="is_online"><?php echo LANG_ONLINE; ?></span>
                         <?php } ?>
-
-                    <?php } ?>
 
                 </div>
 

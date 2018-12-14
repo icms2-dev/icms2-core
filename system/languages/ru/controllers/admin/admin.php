@@ -106,13 +106,6 @@
     define('LANG_CP_FOLDERS',                   'Личные папки');
     define('LANG_CP_FOLDERS_ON',                'Включить личные папки');
     define('LANG_CP_FOLDERS_HINT',              'Каждый пользователь сможет разделять контент по личным папкам, отображаемым при просмотре контента в профиле');
-    define('LANG_CP_CT_GROUPS',                 'Связь с группами');
-    define('LANG_CP_CT_GROUPS_ALLOW',           'Создание в группах');
-    define('LANG_CP_CT_GROUPS_ALLOW_ONLY',      'Создание только в группах');
-    define('LANG_CP_COMMENTS',                  'Комментарии');
-    define('LANG_CP_COMMENTS_ON',               'Включить комментарии');
-    define('LANG_CP_RATING',                    'Рейтинг');
-    define('LANG_CP_RATING_ON',                 'Включить рейтинг');
     define('LANG_CP_TAGS_ON',                   'Включить теги');
     define('LANG_CP_TAGS_IN_LIST',              'Выводить теги при просмотре списка');
     define('LANG_CP_TAGS_IN_ITEM',              'Выводить теги при просмотре записи');
@@ -451,12 +444,9 @@
 
     define('LANG_CP_SETTINGS_CACHE_CLEAN',      'Очистить кеш');
 
-    define('LANG_CP_ADDONS_DATA_ERROR',         'Ошибка получения данных, попробуйте повторить позже.');
-    define('LANG_CP_ADDONS_CURL_ERROR',         'Просмотр каталога невозможен, поскольку на сервере отсутствует CURL. Вы можете выбрать дополнения из <a target="_blank" href="https://addons.instantcms.ru/">официального каталога</a>.');
-    define('LANG_CP_INSTALL_PACKAGE_LINK_HINT', 'Например, скопировав ссылку на скачивание с <a target="_blank" href="https://addons.instantcms.ru/">официального каталога дополнений</a>');
     define('LANG_CP_INSTALL_BY_LINK',           'Установите с URL-адреса');
-    define('LANG_CP_OFICIAL_ADDONS',            'Каталог дополнений');
-    define('LANG_CP_INSTALL_PACKAGE',           'Установить пакет дополнения');
+	define('LANG_CP_INSTALL_PACKAGE_LINK_HINT', 'Например, скопировав ссылку на скачивание');
+	define('LANG_CP_INSTALL_PACKAGE',           'Установить пакет дополнения');
     define('LANG_CP_DO_INSTALL',                'Установить');
     define('LANG_CP_DO_UPDATE',                 'Обновить');
     define('LANG_CP_LAST_UPDATE',               'Последнее обновление');
@@ -558,21 +548,6 @@
     define('LANG_CP_BACK_TO_SITE',              'Вернуться на сайт');
     define('LANG_CP_3RDPARTY_CREDITS',          'При участии');
 
-    define('LANG_MODERATOR_ADD',             'Добавить модератора');
-    define('LANG_MODERATOR_ADD_HINT',        'Введите email пользователя, которого вы хотите назначить модератором');
-    define('LANG_MODERATOR_APPROVED_COUNT',  'Одобрено');
-    define('LANG_MODERATOR_DELETED_COUNT',   'Удалено');
-    define('LANG_MODERATOR_IDLE_COUNT',      'В процессе');
-    define('LANG_MODERATOR_ASSIGNED_DATE',   'Назначен');
-    define('LANG_MODERATOR_TRASH_LEFT_TIME', 'Время жизни записей в корзине');
-    define('LANG_MODERATOR_ALREADY',         'Пользователь %s уже является модератором');
-    define('LANG_MODERATORATION_OPTIONS',    'Настройка модерации');
-    define('LANG_MODERATION_TRASH_NO_REMOVE', 'Бессрочно');
-    define('LANG_MODERATION_NOT_NEEDED',      'Не требовалась');
-    define('LANG_MODERATION_IN_TRASH',        'В корзине');
-    define('LANG_MODERATION_IN_TRASH_TIME',   'В корзине, будет удалён через %s');
-    define('LANG_MODERATION_LOGS',            'Лог модераций');
-
     define('LANG_CP_SCHEDULER',                     'Планировщик');
     define('LANG_CP_SCHEDULER_TASK',                'Задача');
     define('LANG_CP_SCHEDULER_TASK_ADD',            'Создать задачу');
@@ -613,7 +588,6 @@
     define('LANG_HELP_URL_CTYPES_DATASET',          'https://docs.instantcms.ru/manual/ctypes/datasets/add');
     define('LANG_HELP_URL_CTYPES_RELATIONS',        'https://docs.instantcms.ru/manual/ctypes/relations');
     define('LANG_HELP_URL_CTYPES_PERMS',            'https://docs.instantcms.ru/manual/ctypes/permissions');
-    define('LANG_HELP_URL_CTYPES_MODERATORS',       'https://docs.instantcms.ru/manual/ctypes/moderators');
     define('LANG_HELP_URL_MENU',                    'https://docs.instantcms.ru/manual/menu');
     define('LANG_HELP_URL_WIDGETS',                 'https://docs.instantcms.ru/manual/widgets');
     define('LANG_HELP_URL_WIDGETS_CFG',             'https://docs.instantcms.ru/manual/widgets/config');
@@ -622,22 +596,11 @@
     define('LANG_HELP_URL_INSTALL',                 'https://docs.instantcms.ru/manual/addons');
     define('LANG_HELP_URL_COM_REDIRECT',            'https://docs.instantcms.ru/manual/components/redirect');
     define('LANG_HELP_URL_COM_AUTH',                'https://docs.instantcms.ru/manual/components/auth');
-    define('LANG_HELP_URL_COM_MODERATION',          'https://docs.instantcms.ru/manual/components/moderation');
-    define('LANG_HELP_URL_COM_ACTIVITY',            'https://docs.instantcms.ru/manual/components/activity');
-    define('LANG_HELP_URL_COM_GROUPS',              'https://docs.instantcms.ru/manual/components/groups');
     define('LANG_HELP_URL_COM_RECAPTCHA',           'https://docs.instantcms.ru/manual/components/recaptcha');
-    define('LANG_HELP_URL_COM_COMMENTS',            'https://docs.instantcms.ru/manual/components/comments');
 	define('LANG_HELP_URL_COM_IMAGES',				'https://docs.instantcms.ru/manual/components/images');
-	define('LANG_HELP_URL_COM_SUBSCRIPTIONS',		'https://docs.instantcms.ru/manual/components/subscriptions');
     define('LANG_HELP_URL_COM_USERS',               'https://docs.instantcms.ru/manual/components/users');
     define('LANG_HELP_URL_COM_USERS_MIGRATON',      'https://docs.instantcms.ru/manual/components/users/migrations');
-    define('LANG_HELP_URL_COM_MARKITUP',            'https://docs.instantcms.ru/manual/components/markitup');
-    define('LANG_HELP_URL_COM_RATING',              'https://docs.instantcms.ru/manual/components/rating');
     define('LANG_HELP_URL_COM_SEARCH',              'https://docs.instantcms.ru/manual/components/search');
-    define('LANG_HELP_URL_COM_TAGS',                'https://docs.instantcms.ru/manual/components/tags');
-    define('LANG_HELP_URL_COM_RSS',                 'https://docs.instantcms.ru/manual/components/rss');
-    define('LANG_HELP_URL_COM_SITEMAP',             'https://docs.instantcms.ru/manual/components/sitemap');
-	define('LANG_HELP_URL_COM_PHOTOS',				'https://docs.instantcms.ru/manual/components/photos');
     define('LANG_HELP_URL_USERS',                   'https://docs.instantcms.ru/manual/users');
     define('LANG_HELP_URL_USERS_USER',              'https://docs.instantcms.ru/manual/users/user');
     define('LANG_HELP_URL_USERS_GROUP',             'https://docs.instantcms.ru/manual/users/group');
@@ -657,7 +620,6 @@
     define('LANG_ZIP_ERROR_5', 'Ошибка чтения');
     define('LANG_ZIP_ERROR_4', 'Ошибка поиска');
     define('LANG_INSTALL_NOTICE_SYSTEM_FILE', 'Внимание! Пакет заменяет некоторые системные файлы CMS. Не рекомендуется продолжать установку, если разработчик пакета Вам неизвестен.');
-    define('LANG_ADMIN_NOTICES', 'Уведомления');
     define('LANG_ADMIN_ACCESS_DENIED_BY_IP', 'Доступ с вашего ip адреса ограничен');
     define('LANG_MAILCHECK_ERROR', 'При отправке письма произошла ошибка: <br><b>%s</b>');
     define('LANG_MAILCHECK_SUCCESS', 'Письмо успешно отправлено');

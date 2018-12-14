@@ -57,19 +57,7 @@ function grid_users($controller){
                 return '<span class="tooltip" title="'.$ld.'">'.html_date($date).'</span>';
             }
         ),
-        'karma' => array(
-            'title' => LANG_KARMA,
-            'width' => 60,
-            'filter' => 'exact',
-            'handler' => function($value){
-                return '<span class="'.  html_signed_class($value).'">'.html_signed_num($value).'</span>';
-            }
-        ),
-        'rating' => array(
-            'title' => LANG_RATING,
-            'width' => 60,
-            'filter' => 'exact'
-        ),
+
         'is_locked' => array(
             'title' => LANG_CP_USER_LOCKED,
             'flag' => 'flag_lock',

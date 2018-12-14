@@ -36,14 +36,6 @@ class onUsersCronMigration extends cmsAction {
 
                 }
 
-                if ($is_rating){
-                    if ($user['rating'] < $rating) { $is_migrate = false; }
-                }
-
-                if ($is_karma){
-                    if ($user['karma'] < $karma) { $is_migrate = false; }
-                }
-
 				if (!$is_migrate) { continue; }
 
                 if (!$is_keep_group){
@@ -59,14 +51,6 @@ class onUsersCronMigration extends cmsAction {
                     'groups' => $user['groups'],
                     'date_group' => null
                 ));
-
-                if (!$is_notify) { continue; }
-
-                $messenger = cmsCore::getController('messages');
-
-                $messenger->addRecipient($user['id']);
-
-                $messenger->sendNoticePM(array('content' => nl2br($notify_text)));
 
             }
 

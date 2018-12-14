@@ -1,13 +1,14 @@
 <?php
 
-function step($langs){
+	function step($langs)
+	{
 
-    $result = array(
-        'html' => render('step_lang', array(
-            'langs' => $langs
-        ))
-    );
+		$result = [
+			'html' => render('step_lang', [
+				'langs' => $langs,
+			]),
+		];
 
-    return $result;
+		return $result;
 
-}
+	}

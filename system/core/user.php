@@ -194,9 +194,6 @@ class cmsUser {
             }
         }
 
-        // кешируем список друзей в сессию
-        $this->recacheFriends();
-
         // создаем online-сессию
         self::createSession($user_id);
 
@@ -772,50 +769,9 @@ class cmsUser {
 
         if ($options[$option] == 'anyone'){ return true; }
 
-        if ($options[$option] == 'friends' && $this->isFriend($profile['id'])){ return true; }
 
         return false;
 
-    }
-
-//============================================================================//
-//============================================================================//
-
-    public function recacheFriends(){
-
-        $friends = cmsCore::getModel('users')->getFriendsIds($this->id);
-
-        $this->friends = $friends['friends'];
-        $this->subscribes = $friends['subscribes'];
-
-        return $this;
-
-    }
-
-    public function isFriend($friend_id, $type = 'friends'){
-
-        if (!$friend_id || !$this->id) { return false; }
-
-        if ($friend_id == $this->id) { return true; }
-
-        if (empty($this->{$type})) { return false; }
-
-        return in_array($friend_id, $this->{$type});
-
-    }
-
-    public function isSubscribe($friend_id){
-
-        return $this->isFriend($friend_id, 'subscribes');
-
-    }
-
-    public function hasFriends(){
-        return !empty($this->friends);
-    }
-
-    public function hasSubscribes(){
-        return !empty($this->subscribes);
     }
 
 }

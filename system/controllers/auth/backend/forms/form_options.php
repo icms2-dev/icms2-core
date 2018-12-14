@@ -28,10 +28,6 @@ class formAuthOptions extends cmsForm {
                         'title' => LANG_REG_CFG_DISABLED_NOTICE,
                     )),
 
-                    new fieldCheckbox('is_reg_invites', array(
-                        'title' => LANG_REG_CFG_IS_INVITES,
-                    )),
-
                     new fieldCheckbox('reg_captcha', array(
                         'title' => LANG_REG_CFG_REG_CAPTCHA,
                     )),
@@ -129,57 +125,7 @@ class formAuthOptions extends cmsForm {
                     )),
 
                 )
-            ),
-
-            array(
-                'type' => 'fieldset',
-                'title' => LANG_AUTH_INVITES,
-                'childs' => array(
-
-                    new fieldCheckbox('is_invites', array(
-                        'title' => LANG_AUTH_INVITES_AUTO,
-                        'hint' => LANG_AUTH_INVITES_AUTO_HINT
-
-                    )),
-
-                    new fieldCheckbox('is_invites_strict', array(
-                        'title' => LANG_AUTH_INVITES_STRICT,
-                        'hint' => LANG_AUTH_INVITES_STRICT_HINT
-
-                    )),
-
-                    new fieldNumber('invites_period', array(
-                        'title' => LANG_AUTH_INVITES_PERIOD,
-                        'units' => LANG_DAY10,
-                        'default' => 7,
-                        'rules' => array(
-                            array('min', 1)
-                        )
-                    )),
-
-                    new fieldNumber('invites_qty', array(
-                        'title' => LANG_AUTH_INVITES_QTY,
-                        'rules' => array(
-                            array('min', 1)
-                        )
-                    )),
-
-                    new fieldNumber('invites_min_karma', array(
-                        'title' => LANG_AUTH_INVITES_KARMA,
-                    )),
-
-                    new fieldNumber('invites_min_rating', array(
-                        'title' => LANG_AUTH_INVITES_RATING,
-                    )),
-
-                    new fieldNumber('invites_min_days', array(
-                        'title' => LANG_AUTH_INVITES_DATE,
-                        'units' => LANG_DAY10
-                    ))
-
-                )
             )
-
         );
 
     }

@@ -15,7 +15,6 @@
     <?php $this->addMainJS('templates/default/js/jquery-modal.js'); ?>
     <?php $this->addMainJS('templates/default/js/core.js'); ?>
     <?php $this->addMainJS('templates/default/js/modal.js'); ?>
-    <?php $this->addMainJS('templates/default/js/messages.js'); ?>
     <?php $this->addMainJS('templates/default/js/admin-core.js'); ?>
     <?php $this->head(false); ?>
 </head>
@@ -45,13 +44,6 @@
             </ul>
             <ul id="right_links">
                 <li><a href="<?php echo href_to('users', $user->id); ?>" class="user"><?php echo html_avatar_image($user->avatar, 'micro'); ?><span><?php echo $user->nickname; ?></span></a></li>
-                <?php if($notices_count){ ?>
-                    <li class="bell ajax-modal notices-counter">
-                        <a href="<?php echo href_to('messages', 'notices'); ?>" title="<?php echo LANG_ADMIN_NOTICES; ?>">
-                            <span class="wrap"><?php echo LANG_ADMIN_NOTICES; ?><span class="counter"><?php echo $notices_count; ?></span></span>
-                        </a>
-                    </li>
-                <?php } ?>
                 <li><a href="<?php echo LANG_HELP_URL; ?>"><?php echo LANG_HELP; ?></a></li>
                 <li><a href="<?php echo href_to_home(); ?>"><?php echo LANG_CP_BACK_TO_SITE; ?></a></li>
                 <li><a href="<?php echo href_to('auth', 'logout'); ?>" class="logout"><?php echo LANG_LOG_OUT; ?></a></li>
@@ -98,27 +90,5 @@
             <a href="<?php echo href_to('admin', 'credits'); ?>"><?php echo LANG_CP_3RDPARTY_CREDITS; ?></a>
         </div>
     </div>
-
-    <script type="text/javascript">
-        $(function(){
-        <?php if(empty($this->options['disable_help_anim'])){ ?>
-            setTimeout(function(){
-                $('.cp_toolbar li.help').addClass('animated shake');
-                $(document).tooltip({
-                    items: '.cp_toolbar li.help',
-                    show: { duration: 0 },
-                    hide: { duration: 0 },
-                    content: function() {
-                        return '<?php echo LANG_CP_TOOLTIP_HELP; ?><span class="anim_tooltip"><?php echo LANG_CP_TOOLTIP_HELP_HINT; ?></span>';
-                    },
-                    position: {
-                        my: "center",
-                        at: "top-40"
-                    }
-                });
-            }, 1000);
-        <?php } ?>
-        });
-    </script>
 </body>
 </html>

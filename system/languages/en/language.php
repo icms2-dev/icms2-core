@@ -51,11 +51,6 @@
     define('LANG_SORTING_DESC',              'Descending');
     define('LANG_PHOTO',                     'Image');
     define('LANG_PHOTOS',                    'Images');
-    define('LANG_COMMENTS',                  'Comments');
-    define('LANG_RATING',                    'Rating');
-    define('LANG_KARMA',                     'Reputation');
-    define('LANG_KARMA_UP',                  'Vote Up');
-    define('LANG_KARMA_DOWN',                'Vote Down');
     define('LANG_CSS_CLASS',                 'CSS class');
     define('LANG_CSS_CLASS_WRAP',            'Container CSS class');
     define('LANG_CSS_CLASS_TITLE',           'Title CSS class');
@@ -247,46 +242,11 @@
     define('LANG_USERS_SUBSCRIBE',           'Subscribe');
     define('LANG_USERS_UNSUBSCRIBE',         'Unsubscribe');
 
-    //MODERATION
-    define('LANG_MODERATION',                'Moderation');
-    define('LANG_MODERATION_USERS',          'Your materials awaiting moderation');
-    define('LANG_MODERATOR',                 'Moderator');
-    define('LANG_MODERATORS',                'Moderators');
-    define('LANG_MODERATION_SUCCESS',        'Approved');
-    define('LANG_MODERATION_APPROVE',        'Approve');
-    define('LANG_MODERATION_RETURN',         'Remove from the moderation');
-    define('LANG_MODERATION_RETURN_FOR_REVISION', 'Return for revision');
-    define('LANG_MODERATION_REFUSE',         'Refuse and delete %s');
-    define('LANG_MODERATION_REFUSE_REASON',  'What is the reason for the rejection?');
-    define('LANG_MODERATION_REMARKS',        'Remarks');
-    define('LANG_MODERATION_APPROVED',       'Page published');
-    define('LANG_MODERATION_APPROVED_BY',    'Approved by moderator');
-    define('LANG_MODERATION_PM_AUTHOR',      'Send a message to the author');
-    define('LANG_MODERATION_SEND',           'Submit to moderation');
-    define('LANG_MODERATION_NOTICE',         'The entry will be published after moderator\'s approval. ');
-    define('LANG_MODERATION_NOTICE_MODER',   'The entry awaits your approval. ');
-    define('LANG_MODERATION_NOTICE_VIEW',    '%s %s already %s it%s, the decision has not yet been made.');
-    define('LANG_MODERATION_VIEW',           'view');
-    define('LANG_MODERATION_VIEWS',          'viewed');
-    define('LANG_MODERATION_IDLE',           'Notification was sent to moderator %s');
-    define('LANG_MODERATION_NO_TASKS',       'No entries require approval');
-    define('LANG_MODERATION_NOTIFY',         'A new page awaits your approval');
-    define('LANG_MODERATION_RETURN_NOTIFY',  'Author retrieve the material from the moderation');
-    define('LANG_MODERATION_REMARK_NOTIFY',  'Recording is returned for revision');
-    define('LANG_PM_MODERATION_COMMENT_APPROVED', 'Moderator approved the comment <b><a href="%2$s">%1$s</a></b> of publication%3$s');
-    define('LANG_PM_MODERATION_APPROVED',    'Moderator approved the <b><a href="%2$s">%1$s</a></b> publication%3$s');
-    define('LANG_PM_MODERATION_REFUSED',     'Moderator refused  the<b>%1$s</b> publication.%2$s Reason for rejection: %3$s');
-    define('LANG_PM_MODERATION_COMMENT_REFUSED', 'A moderator has rejected your comment on the page <b>%1$s</b>.%2$s Reason for rejection: %3$s');
-    define('LANG_PM_MODERATION_REWORK',      'The moderator returned the <b><a href="%2$s">%1$s</a></b> page for revision and pointed remarks:<br />%3$s');
-
     //PERMISSIONS
     define('LANG_PERMISSIONS',               'Permissions');
     define('LANG_PERM_RULE',                 'Permission rule');
     define('LANG_PERM_OPTION_NULL',          'No');
     define('LANG_PERM_OPTION_YES',           'Yes');
-    define('LANG_PERM_OPTION_PREMOD',        'With premoderation');
-    define('LANG_PERM_OPTION_PREMOD_OWN',    'Only own with premoderation');
-    define('LANG_PERM_OPTION_PREMOD_ALL',    'All with premoderation');
     define('LANG_PERM_OPTION_OWN',           'Only own');
     define('LANG_PERM_OPTION_OTHER',         'Only others');
     define('LANG_PERM_OPTION_TO_OTHER',      'Only in others');
@@ -419,7 +379,6 @@
     define('LANG_ACCEPT',                    'Accept');
     define('LANG_DECLINE',                   'Decline');
     define('LANG_CONFIRM',                   'Confirm');
-    define('LANG_INVITE',                    'Invite');
     define('LANG_ADD', 						 'New');
     define('LANG_ADD_CONTENT',				 'New Page');
     define('LANG_ADD_USER',                  'New User');

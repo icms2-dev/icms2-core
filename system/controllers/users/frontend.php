@@ -82,22 +82,10 @@ class users extends cmsFrontend {
 
     public function setCurrentProfile($profile) {
 
-        // Статус
-        if ($this->options['is_status']) {
-            $profile['status'] = $this->model->getUserStatus($profile['status_id']);
-        }
-
-        // Репутация
-        $profile['is_can_vote_karma'] = $this->cms_user->is_logged &&
-                                        cmsUser::isAllowed('users', 'vote_karma') &&
-                                        ($this->cms_user->id != $profile['id']) &&
-                                        $this->model->isUserCanVoteKarma($this->cms_user->id, $profile['id'], $this->options['karma_time']);
 
         $this->profile = $profile;
 
         $this->is_own_profile = $this->cms_user->id == $profile['id'];
-        $this->is_friend_profile = $this->cms_user->isFriend($profile['id']);
-        $this->is_subscribe_profile = $this->cms_user->isSubscribe($profile['id']);
 
         return $this;
 
@@ -188,22 +176,6 @@ class users extends cmsFrontend {
                 'controller' => $this->name,
                 'action' => $profile['id'],
                 'params' => array('edit', 'theme'),
-            );
-        }
-
-        $menu[] = array(
-            'title' => LANG_USERS_EDIT_PROFILE_NOTICES,
-            'controller' => $this->name,
-            'action' => $profile['id'],
-            'params' => array('edit', 'notices'),
-        );
-
-        if (!empty($this->options['is_friends_on'])){
-            $menu[] = array(
-                'title' => LANG_USERS_EDIT_PROFILE_PRIVACY,
-                'controller' => $this->name,
-                'action' => $profile['id'],
-                'params' => array('edit', 'privacy'),
             );
         }
 
@@ -306,14 +278,6 @@ class users extends cmsFrontend {
             );
         }
 
-        // Рейтинг
-        if ($this->options['is_ds_rating']){
-            $datasets['rating'] = array(
-                'name' => 'rating',
-                'title' => LANG_USERS_DS_RATED,
-                'order' => array('karma desc, rating desc', '')
-            );
-        }
 
         // Популярные
         if ($this->options['is_ds_popular']){
@@ -373,8 +337,6 @@ class users extends cmsFrontend {
         cmsUser::addSessionMessage(implode('<br>', $notice_text), 'error');
 
         cmsUser::logout();
-
-        return;
 
     }
 

@@ -4,8 +4,7 @@
 
         'hooks' => array(
             'ctype_after_update',
-            'ctype_after_delete',
-            'sitemap_sources'
+            'ctype_after_delete'
         )
 
     );

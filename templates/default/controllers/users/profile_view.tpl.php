@@ -61,26 +61,6 @@
                 </ul>
             </div>
         <?php } ?>
-        <?php if ($is_friends_on && $friends) { ?>
-            <div class="block">
-                <div class="block-title">
-                    <?php if($show_all_flink){ ?>
-                        <a href="<?php echo $this->href_to($profile['id'], 'friends'); ?>"><?php echo LANG_USERS_FRIENDS; ?></a>
-                    <?php } else { ?>
-                        <?php echo LANG_USERS_FRIENDS; ?>
-                    <?php } ?>
-                    (<?php echo $profile['friends_count']; ?>)
-                </div>
-                <div class="friends-list">
-                    <?php foreach($friends as $friend){ ?>
-                        <a href="<?php echo $this->href_to($friend['id']); ?>" title="<?php html($friend['nickname']); ?>">
-                            <span><?php echo html_avatar_image($friend['avatar'], 'micro', $friend['nickname'], $friend['is_deleted']); ?></span>
-                        </a>
-                    <?php } ?>
-                </div>
-            </div>
-        <?php } ?>
-
     </div>
 
     <div id="right_column" class="column">
@@ -135,21 +115,3 @@
 
 </div>
 
-<?php if ($wall_html){ ?>
-    <div id="user_profile_wall">
-        <?php echo $wall_html; ?>
-    </div>
-<?php } ?>
-
-<script>
-    $(function() {
-        $('.friends-list a').tooltip({
-            show: { duration: 0 },
-            hide: { duration: 0 },
-            position: {
-                my: "center+5 top+2",
-                at: "center bottom"
-            }
-        });
-    });
-</script>

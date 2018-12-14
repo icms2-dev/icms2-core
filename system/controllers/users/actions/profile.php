@@ -10,9 +10,6 @@ class actionUsersProfile extends cmsAction {
 
         $profile = cmsEventsManager::hook('users_profile_view', $profile);
 
-        // отправлен запрос дружбы
-        $this->is_friend_req = $this->options['is_friends_on'] ? $this->model->isFriendshipRequested($this->cms_user->id, $profile['id']) : false;
-
         // Доступность профиля для данного пользователя
         if ( !$this->cms_user->isPrivacyAllowed($profile, 'users_profile_view') ){
             return $this->cms_template->render('profile_closed', array(
@@ -29,9 +26,6 @@ class actionUsersProfile extends cmsAction {
         // Получаем поля
         $fields = $content->model->setTablePrefix('')->orderBy('ordering')->getContentFields('{users}');
 
-        // Друзья
-        $friends = $this->options['is_friends_on'] ? $this->model->getFriends($profile['id']) : false;
-
         // Контент
 		$content->model->setTablePrefix(cmsModel::DEFAULT_TABLE_PREFIX);
 
@@ -45,25 +39,6 @@ class actionUsersProfile extends cmsAction {
             return cmsUser::get('id') == $profile['id'] ? true : $content->checkListPerm($ctype['name']);
         });
 
-        //
-        // Стена
-        //
-        if ($this->options['is_wall']){
-
-            $wall_target = array(
-                'controller'   => 'users',
-                'profile_type' => 'user',
-                'profile_id'   => $profile['id']
-            );
-
-            $wall_permissions = $this->runHook('wall_permissions', array(
-                'profile_type' => 'user',
-                'profile_id'   => $profile
-            ));
-
-            $wall_html = $this->controller_wall->getWidget(LANG_USERS_PROFILE_WALL, $wall_target, $wall_permissions);
-
-        }
 
         list($profile, $fields) = cmsEventsManager::hook('profile_before_view', array($profile, $fields));
 
@@ -94,11 +69,9 @@ class actionUsersProfile extends cmsAction {
             'is_friends_on'  => $this->options['is_friends_on'],
             'tool_buttons'   => $this->getToolButtons($profile),
             'show_all_flink' => isset($this->tabs['friends']),
-            'friends'        => $friends,
             'content_counts' => $content_counts,
             'fields'         => $fields,
             'fieldsets'      => $fieldsets,
-            'wall_html'      => isset($wall_html) ? $wall_html : false,
             'tabs'           => $this->getProfileMenu($profile)
         ));
 
@@ -154,15 +127,6 @@ class actionUsersProfile extends cmsAction {
 
                 }
 
-            }
-
-            if ($this->is_own_profile && $profile['invites_count']){
-                $tool_buttons['invites'] = array(
-                    'title'   => LANG_USERS_MY_INVITES,
-                    'class'   => 'invites',
-                    'counter' => $profile['invites_count'],
-                    'href'    => href_to('users', $profile['id'], 'invites')
-                );
             }
 
             if ($this->is_own_profile || $this->cms_user->is_admin){

@@ -1,8 +1,8 @@
 <?php
-    $this->addCSS('templates/default/css/datatree.css');
-    $this->addJS('templates/default/js/jquery-cookie.js');
-    $this->addJS('templates/default/js/datatree.js');
-    $this->addJS('templates/default/js/admin-props.js');
+    $this->addTplCSSName('datatree');
+    $this->addTplJSName('jquery-cookie');
+    $this->addTplJSName('datatree');
+    $this->addTplJSName('admin-props');
 ?>
 
 <h1><?php echo LANG_CONTENT_TYPE; ?>: <span><?php echo $ctype['title']; ?></span></h1>

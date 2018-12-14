@@ -10,12 +10,6 @@
         'href'   => LANG_HELP_URL_INSTALL
     ));
 
-    $this->addToolButton(array(
-        'class' => 'addons',
-        'title' => LANG_CP_OFICIAL_ADDONS,
-        'href'  => $this->href_to('addons_list')
-    ));
-
     if(!empty($manifest['notice_system_files'])){
         cmsUser::addSessionMessage($manifest['notice_system_files'], 'error');
     }

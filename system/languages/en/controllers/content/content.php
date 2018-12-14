@@ -30,9 +30,6 @@
     define('LANG_RULE_CONTENT_ADD_CAT',      'Adding categories');
     define('LANG_RULE_CONTENT_EDIT_CAT',     'Editing categories');
     define('LANG_RULE_CONTENT_DELETE_CAT',   'Deleting categories');
-    define('LANG_RULE_CONTENT_COMMENT',      'Posting comments');
-    define('LANG_RULE_CONTENT_DISABLE_COMMENTS', 'Disabling comments ');
-    define('LANG_RULE_CONTENT_RATE',        'Rating');
     define('LANG_RULE_CONTENT_PRIVACY',      'Configuring privacy settings');
     define('LANG_RULE_CONTENT_VIEW_ALL',     'Viewing private entries');
     define('LANG_RULE_CONTENT_LIMIT',       'Maximum number of entries');
@@ -46,8 +43,6 @@
     define('LANG_PERM_OPTION_ANY', 'Any date');
     define('LANG_CONTENT_CATS_ALLOW_ADD',     'Groups whose members can add entries in this category');
     define('LANG_CONTENT_CATS_ALLOW_ADD_HINT', 'Selected groups should have permission to add entries');
-    define('LANG_CONTENT_ACTIVITY_ADD',     'Adding %s');
-    define('LANG_CONTENT_ACTIVITY_ADD_DESC','adds %s %s');
     define('LANG_CONTENT_SELECT_CATEGORY',  '-- select category --');
     define('LANG_CONTENT_SELECT_CATEGORIES', 'Click to select additional categories');
     define('LANG_CONTENT_SELECT_FOLDER',    '-- select folder --');
@@ -64,5 +59,4 @@
     define('LANG_CONTENT_CONTEXT_LT_ITEM_VIEW_RELATION_LIST', 'In lists, in the tab');
     define('LANG_CONTENT_CONTEXT_LT_ITEMS_FROM_FRIENDS', 'In private friends items');
     define('LANG_CONTENT_CONTEXT_LT_TRASH', 'In the trash');
-    define('LANG_CONTENT_CONTEXT_LT_MODERATION_LIST', 'In the moderation list');
     define('LANG_CONTENT_CONTEXT_LT_PROFILE_CONTENT', 'In profile');

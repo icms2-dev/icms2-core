@@ -103,29 +103,17 @@
 
                 </div>
 
-                <?php if (!empty($item['show_tags'])){ ?>
-                    <div class="tags_bar">
-                        <?php echo html_tags_bar($item['tags'], 'content-'.$ctype['name']); ?>
-                    </div>
-                <?php } ?>
-
                 <?php
 					$show_bar = !empty($item['rating_widget']) ||
 								$fields['date_pub']['is_in_list'] ||
 								$fields['user']['is_in_list'] ||
 								!empty($ctype['options']['hits_on']) ||
-								($ctype['is_comments'] && $item['is_comments_on']) ||
 								!$item['is_pub'] ||
 								!$item['is_approved'];
                 ?>
 
                 <?php if ($show_bar){ ?>
                     <div class="info_bar">
-                        <?php if (!empty($item['rating_widget'])){ ?>
-                            <div class="bar_item bi_rating">
-                                <?php echo $item['rating_widget']; ?>
-                            </div>
-                        <?php } ?>
                         <?php if ($fields['date_pub']['is_in_list']){ ?>
                             <div class="bar_item bi_date_pub<?php if(!empty($item['is_new'])){ ?> highlight_new<?php } ?>" title="<?php echo $fields['date_pub']['title']; ?>">
                                 <?php echo $fields['date_pub']['handler']->parse( $item['date_pub'] ); ?>
@@ -149,17 +137,6 @@
                         <?php if (!empty($ctype['options']['hits_on'])){ ?>
                             <div class="bar_item bi_hits" title="<?php echo LANG_HITS; ?>">
                                 <?php echo $item['hits_count']; ?>
-                            </div>
-                        <?php } ?>
-                        <?php if ($ctype['is_comments'] && $item['is_comments_on']){ ?>
-                            <div class="bar_item bi_comments">
-                                <?php if (!empty($item['is_private_item'])) { ?>
-                                    <?php echo intval($item['comments']); ?>
-                                <?php } else { ?>
-                                    <a href="<?php echo href_to($ctype['name'], $item['slug'].'.html'); ?>#comments" title="<?php echo LANG_COMMENTS; ?>">
-                                        <?php echo intval($item['comments']); ?>
-                                    </a>
-                                <?php } ?>
                             </div>
                         <?php } ?>
                         <?php if (!$item['is_approved']){ ?>

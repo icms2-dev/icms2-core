@@ -4,16 +4,18 @@ class actionAdminContentItemAdd extends cmsAction {
 
     public function run($ctype_id, $category_id=1){
 
-        $content_model = cmsCore::getModel('content');
+	    $ctype = $this->model_content->getContentType($ctype_id);
+	    if (!$ctype) {
+		    return cmsCore::error404();
+	    }
 
-        $ctype = $content_model->getContentType($ctype_id);
+	    $this->cms_template->addCSS('templates/'.$this->cms_template->getName().'/controllers/admin/styles.css');
 
-        $params = $category_id>1 ? array($category_id) : false;
-
-        $url = href_to($ctype['name'], 'add', $params) . '?back=' . href_to($this->name, 'content');
-
-        $this->redirect($url);
-
+	    $this->cms_core->uri_controller = 'content';
+	    $this->cms_core->uri_action = $ctype['name'];
+	    $this->cms_core->uri = $ctype['name'].'/add'.($category_id ? '/'.$category_id : '');
+	    $this->current_params = array($category_id);
+	    $this->cms_core->runController();
     }
 
 }

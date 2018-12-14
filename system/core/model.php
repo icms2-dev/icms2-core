@@ -140,13 +140,12 @@ class cmsModel {
             'is_parent_hidden'   => array('type' => 'bool', 'index' => 'date_pub', 'composite_index' => 1),
             'category_id'        => array('type' => 'int', 'index' => true, 'default' => 1, 'unsigned' => true),
             'folder_id'          => array('type' => 'int', 'index' => true, 'unsigned' => true),
-            'is_comments_on'     => array('type' => 'bool', 'default' => 1),
+            'is_comments_on'     => array('type' => 'bool', 'default' => 0),
             'comments'           => array('type' => 'int', 'default' => 0, 'unsigned' => true),
             'rating'             => array('type' => 'int', 'default' => 0),
             'is_deleted'         => array('type' => 'bool', 'index' => 'date_pub', 'composite_index' => 2),
             'is_approved'        => array('type' => 'bool', 'index' => 'date_pub', 'composite_index' => 3, 'default' => 1),
             'approved_by'        => array('type' => 'int', 'index' => true, 'unsigned' => true),
-            'date_approved'      => array('type' => 'timestamp'),
             'is_private'         => array('type' => 'bool', 'default' => 0)
         );
 
@@ -1026,27 +1025,6 @@ class cmsModel {
         return $this->hidden_parents_filter_disabled === false;
     }
 
-    public function joinModerationsTasks($ctype_name){
-        $this->select('IF(t.id IS NULL AND i.is_approved < 1, 1, NULL)', 'is_draft');
-        $this->select('t.is_new_item');
-        return $this->joinLeft('moderators_tasks', 't', "t.item_id = i.id AND t.ctype_name = '{$ctype_name}'");
-    }
-
-    public function filterByModeratorTask($moderator_id, $ctype_name, $is_admin = false){
-
-        $this->select('m.is_new_item');
-
-        $this->joinInner('moderators_tasks', 'm', 'm.item_id = i.id');
-
-        $this->filterEqual('m.ctype_name', $ctype_name);
-
-        if(!$is_admin){
-            $this->filterEqual('m.moderator_id', $moderator_id);
-        }
-
-        return $this;
-
-    }
 
     public function filterAvailableOnly(){
 
@@ -1084,44 +1062,6 @@ class cmsModel {
         $this->hp_filtered = true;
 
         return $this->filterIsNull('is_parent_hidden');
-
-    }
-
-    public function filterSubscribe($user_id){
-        return $this->filterFriends($user_id, 0);
-    }
-
-    public function filterFriendsAndSubscribe($user_id){
-        return $this->filterFriends($user_id, null);
-    }
-
-    public function filterFriends($user_id, $is_mutual = 1){
-
-        $this->joinInner('{users}_friends', 'fr', 'fr.friend_id = i.user_id');
-
-        $this->filterEqual('fr.user_id', (int)$user_id);
-
-        if($is_mutual !== null){
-            $this->filterEqual('fr.is_mutual', $is_mutual);
-        } else {
-            // подписчики (null) и друзья (1)
-            $this->filterStart();
-                $this->filterEqual('fr.is_mutual', 1);
-                    $this->filterOr();
-                $this->filterIsNull('fr.is_mutual');
-            $this->filterEnd();
-        }
-
-        return $this;
-
-    }
-
-    public function filterFriendsPrivateOnly($user_id){
-
-        // фильтр приватности при этом не нужен
-        $this->privacy_filtered = true;
-
-        return $this->filterEqual('i.is_private', 1)->filterFriends($user_id);
 
     }
 

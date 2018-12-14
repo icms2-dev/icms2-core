@@ -34,14 +34,7 @@ class actionContentItemEdit extends cmsAction {
         }
 
         // модерация
-        $is_premoderation = false;
-        if(cmsUser::isAllowed($ctype['name'], 'edit', 'premod_own', true) || cmsUser::isAllowed($ctype['name'], 'edit', 'premod_all', true)){
-            $is_premoderation = true;
-        }
-        if (!$is_premoderation && !$item['date_approved']) {
-            $is_premoderation = cmsUser::isAllowed($ctype['name'], 'add', 'premod', true);
-        }
-        $is_moderator = $this->cms_user->is_admin || cmsCore::getModel('moderation')->userIsContentModerator($ctype['name'], $this->cms_user->id);
+        $is_moderator = $this->cms_user->is_admin;
 
         if (!$item['is_approved'] && !$is_moderator && !$item['is_draft']) { cmsCore::error404(); }
 
@@ -99,10 +92,7 @@ class actionContentItemEdit extends cmsAction {
         list($form, $item)  = cmsEventsManager::hook("content_{$ctype['name']}_form", array($form, $item));
 
         // Форма отправлена?
-        $is_submitted = $this->request->has('submit') || $this->request->has('to_draft');
-
-        // форма отправлена к контексте черновика
-        $is_draf_submitted = $this->request->has('to_draft');
+        $is_submitted = $this->request->has('submit');
 
         if ($ctype['props']){
 
@@ -150,28 +140,6 @@ class actionContentItemEdit extends cmsAction {
 			}
 
             if (!$errors){
-
-                if($is_draf_submitted){
-
-                    $item['is_approved'] = 0;
-
-                } else {
-
-                    if($item['is_draft']){
-                        $item['is_approved'] = !$is_premoderation || $is_moderator;
-                    } else {
-                        $item['is_approved'] = $item['is_approved'] && (!$is_premoderation || $is_moderator);
-                    }
-
-                }
-
-                if($is_draf_submitted || !$item['is_approved']){
-                    unset($item['date_approved']);
-                }
-
-                if($is_owner){
-                    $item['approved_by'] = null;
-                }
 
 				$date_pub_time = strtotime($item['date_pub']);
 				$date_pub_end_time = strtotime($item['date_pub_end']);
@@ -253,33 +221,6 @@ class actionContentItemEdit extends cmsAction {
                 cmsEventsManager::hook('content_after_update', $item);
                 cmsEventsManager::hook("content_{$ctype['name']}_after_update", $item);
 
-                if(!$is_draf_submitted){
-
-                    if ($item['is_approved'] || $is_moderator){
-
-                        // новая запись, например из черновика
-                        if(empty($item['date_approved'])){
-                            cmsEventsManager::hook('content_after_add_approve', array('ctype_name' => $ctype['name'], 'item' => $item));
-                            cmsEventsManager::hook("content_{$ctype['name']}_after_add_approve", $item);
-                        }
-
-                        cmsEventsManager::hook('content_after_update_approve', array('ctype_name'=>$ctype['name'], 'item'=>$item));
-                        cmsEventsManager::hook("content_{$ctype['name']}_after_update_approve", $item);
-
-                    } else {
-
-                        $item['page_url'] = href_to_abs($ctype['name'], $item['slug'] . '.html');
-
-                        $succes_text = cmsCore::getController('moderation')->requestModeration($ctype['name'], $item, empty($item['date_approved']));
-
-                        if($succes_text){
-                            cmsUser::addSessionMessage($succes_text, 'info');
-                        }
-
-                    }
-
-                }
-
                 $back_url = $this->request->get('back', '');
 
                 if ($back_url){
@@ -298,7 +239,7 @@ class actionContentItemEdit extends cmsAction {
 
         $back_url = $this->request->get('back', '');
 
-        $show_save_button = ($is_owner || (!$is_premoderation && $item['is_approved']));
+        $show_save_button = $is_owner || $item['is_approved'];
 
         return $this->cms_template->render('item_form', array(
             'do'               => 'edit',
@@ -310,11 +251,8 @@ class actionContentItemEdit extends cmsAction {
             'item'             => $item,
             'form'             => $form,
             'props'            => $props,
-            'is_moderator'     => $is_moderator,
-            'is_premoderation' => $is_premoderation,
             'show_save_button' => $show_save_button,
-            'button_save_text' => (($is_premoderation && !$is_moderator) ? LANG_MODERATION_SEND : ($item['is_approved'] ? LANG_SAVE : LANG_PUBLISH)),
-            'button_draft_text' => (!$item['is_draft'] ? ($show_save_button ? LANG_CONTENT_MOVE_DRAFT : LANG_SAVE) : LANG_CONTENT_SAVE_DRAFT),
+            'button_save_text' => LANG_SAVE,
             'is_multi_cats'    => !empty($ctype['options']['is_cats_multi']),
             'is_load_props'    => false,
             'add_cats'         => $add_cats,

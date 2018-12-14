@@ -50,9 +50,6 @@
     define('LANG_SORTING_DESC',              'По убыванию');
     define('LANG_PHOTO',                     'Изображение');
     define('LANG_PHOTOS',                    'Фотографии');
-    define('LANG_COMMENTS',                  'Комментарии');
-    define('LANG_RATING',                    'Рейтинг');
-    define('LANG_KARMA',                     'Репутация');
     define('LANG_KARMA_UP',                  'Поднять');
     define('LANG_KARMA_DOWN',                'Опустить');
     define('LANG_CSS_CLASS',                 'Класс CSS');
@@ -246,38 +243,6 @@
     define('LANG_USERS_SUBSCRIBE',           'Подписаться');
     define('LANG_USERS_UNSUBSCRIBE',         'Отписаться');
 
-    //MODERATION
-    define('LANG_MODERATION',                'Модерация');
-    define('LANG_MODERATION_USERS',          'Ваши материалы, ожидающие проверки');
-    define('LANG_MODERATOR',                 'Модератор');
-    define('LANG_MODERATORS',                'Модераторы');
-    define('LANG_MODERATION_SUCCESS',        'Проверено');
-    define('LANG_MODERATION_APPROVE',        'Одобрить запись');
-    define('LANG_MODERATION_RETURN',         'Отозвать с проверки');
-    define('LANG_MODERATION_RETURN_FOR_REVISION', 'Вернуть на доработку');
-    define('LANG_MODERATION_REFUSE',         'Отклонить и удалить %s');
-    define('LANG_MODERATION_REFUSE_REASON',  'Укажите причину отклонения');
-    define('LANG_MODERATION_REMARKS',        'Замечания');
-    define('LANG_MODERATION_APPROVED',       'Страница опубликована');
-    define('LANG_MODERATION_APPROVED_BY',    'Проверено модератором');
-    define('LANG_MODERATION_PM_AUTHOR',      'Написать автору');
-    define('LANG_MODERATION_SEND',           'Отправить на модерацию');
-    define('LANG_MODERATION_NOTICE',         'Будет опубликовано после проверки модератором. ');
-    define('LANG_MODERATION_NOTICE_MODER',   'Запись ожидает вашего одобрения. ');
-    define('LANG_MODERATION_NOTICE_VIEW',    '%s %s уже %s её%s, решение еще не принято.');
-    define('LANG_MODERATION_VIEW',           'смотрел');
-    define('LANG_MODERATION_VIEWS',          'смотрели');
-    define('LANG_MODERATION_IDLE',           'Отправлено уведомление модератору %s');
-    define('LANG_MODERATION_NO_TASKS',       'Нет материалов требующих проверки');
-    define('LANG_MODERATION_NOTIFY',         'Новая страница ожидает вашей проверки');
-    define('LANG_MODERATION_RETURN_NOTIFY',  'Автор отозвал материал с проверки');
-    define('LANG_MODERATION_REMARK_NOTIFY',  'Запись возвращена на доработку');
-    define('LANG_PM_MODERATION_COMMENT_APPROVED', 'Модератор одобрил размещение комментария на странице <b><a href="%2$s">%1$s</a></b>%3$s');
-    define('LANG_PM_MODERATION_APPROVED',    'Модератор одобрил размещение страницы <b><a href="%2$s">%1$s</a></b>%3$s');
-    define('LANG_PM_MODERATION_REFUSED',     'Модератор отклонил размещение и удалил страницу <b>%1$s</b>.%2$s Причина отклонения: %3$s');
-    define('LANG_PM_MODERATION_COMMENT_REFUSED', 'Модератор отклонил ваш комментарий на странице <b>%1$s</b>.%2$s Причина отклонения: %3$s');
-    define('LANG_PM_MODERATION_REWORK',      'Модератор возвратил страницу <b><a href="%2$s">%1$s</a></b> на доработку и указал замечания:<br />%3$s');
-
     //PERMISSIONS
     define('LANG_PERMISSIONS',               'Доступ');
     define('LANG_PERM_RULE',                 'Правило доступа');
@@ -416,7 +381,6 @@
     define('LANG_ACCEPT',                    'Принять');
     define('LANG_DECLINE',                   'Отклонить');
     define('LANG_CONFIRM',                   'Подтвердить');
-    define('LANG_INVITE',                    'Пригласить');
     define('LANG_ADD', 						 'Добавить');
     define('LANG_ADD_CONTENT',				 'Создать страницу');
     define('LANG_ADD_USER',                  'Создать пользователя');

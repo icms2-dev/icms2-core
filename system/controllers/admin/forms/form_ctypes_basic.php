@@ -108,40 +108,6 @@ class formAdminCtypesBasic extends cmsForm {
                     )),
                 )
             ),
-            'groups' => array(
-                'type' => 'fieldset',
-                'is_collapsed' => true,
-                'title' => LANG_CP_CT_GROUPS,
-                'childs' => array(
-                    new fieldCheckbox('is_in_groups', array(
-                        'title' => LANG_CP_CT_GROUPS_ALLOW
-                    )),
-                    new fieldCheckbox('is_in_groups_only', array(
-                        'title' => LANG_CP_CT_GROUPS_ALLOW_ONLY,
-                        'visible_depend' => array('is_in_groups' => array('show' => array('1')))
-                    )),
-                )
-            ),
-            'comments' => array(
-                'type' => 'fieldset',
-                'is_collapsed' => true,
-                'title' => LANG_CP_COMMENTS,
-                'childs' => array(
-                    new fieldCheckbox('is_comments', array(
-                        'title' => LANG_CP_COMMENTS_ON
-                    )),
-                )
-            ),
-            'ratings' => array(
-                'type' => 'fieldset',
-                'is_collapsed' => true,
-                'title' => LANG_CP_RATING,
-                'childs' => array(
-                    new fieldCheckbox('is_rating', array(
-                        'title' => LANG_CP_RATING_ON
-                    )),
-                )
-            ),
             'listview' => array(
                 'type' => 'fieldset',
                 'is_collapsed' => true,
@@ -365,8 +331,7 @@ class formAdminCtypesBasic extends cmsForm {
                         'generator' => function ($ctype) use($do){
 
                             $items = array(
-                                'folder' => LANG_CP_FOLDERS,
-                                'group_wrap' => LANG_CP_CT_GROUPS
+                                'folder' => LANG_CP_FOLDERS
                             );
 
                             if($do != 'add'){
@@ -384,9 +349,7 @@ class formAdminCtypesBasic extends cmsForm {
                             }
 
                             return $items + array(
-                                'tags_wrap'    => LANG_TAGS,
                                 'privacy_wrap' => LANG_CP_FIELD_PRIVACY,
-                                'is_comment'   => LANG_CP_COMMENTS,
                                 'seo_wrap'     => LANG_SEO,
                                 'pub_wrap'     => LANG_CP_PUBLICATION,
                             );

@@ -1,46 +1,40 @@
 # InstantCMS
 
-Is a free open source CMS (content management system) that allows you to build websites for any purpose
+Бесплатная, открытая система управления контентом, которая позволяет создавать веб-сайты любой сложности: начиная от визиток и заканчивая социальными сетями и большими порталами.
 
-## Key features
+## Основные преимущества
 
-* Free & open source (GNU/GPL v2);
-* Any content types;
-* Powerful social networking platform;
-* Extremely easy to extend;
-* Templates and plugins;
-* Powerful admin dashboard;
-* SEO tools included;
-* Mobile friendly template;
-* Multilingual CMS interface;
-* User management;
-* Easy-to-install core updates.
+* Бесплатная (GNU/GPL v2);
+* Простая установка и обновление через админку;
+* Любые типы контента;
+* Мощная платформа для создания соцсетей и порталов;
+* Управление пользователями и группами, гибкие права доступа;
+* Интуитивная админ-панель;
+* SEO дружелюбный код;
+* Адаптивный шаблон по умолчанию;
+* Мультиязычность интерфейса;
+* Абсолютная расширяемость;
+* Легкое создание шаблонов;
+* [API](https://github.com/instantsoft/icms2-json-api-component) для подключения мобильных приложений.
 
-## Live Demo ##
+## Демо ##
 
-Try it out for yourself in our [online demo](https://demo.instantcms.ru/)
+Попробуйте сами в нашем [онлайн демо](https://demo.instantcms.ru/)
 
-## Requirements ##
-* PHP 5.5+ (PHP 7 supported too)
-* PHP register_globals off
-* PHP magic_quotes_gpc off
-* GD, iconv, mbstring, simplexml, json and filter PHP extension
-* Mysql 5.0 or above and its support in PHP
-* Apache + mod_rewrite + (MultiViews option disabled)
+## Cистемные требования ##
+* Интерпретатор PHP версии 5.6 или выше;
+* Опции PHP register_globals и magic_quotes_gpc должны быть выключены;
+* Модули для PHP: GD, iconv, mbstring, simplexml, json, filter;
+* СУБД MySQL версии 5 или выше;
+* Веб-сервер Apache с установленным модулем mod_rewrite.
 
-## Install InstantCMS ##
+## Как установить InstantCMS ##
 
-* Check the requirements.
-* How do you [install InstantCMS](https://docs.instantcms.ru/en/manual/install)?
+* Проверьте системные требования.
+* Воспользуйтесь инструкцией [по установке InstantCMS](https://docs.instantcms.ru/en/manual/install)?
 
-## Licensing ##
+## Ссылки
 
-This software is distributed under the GPL-2.0 license. Please read license.en.txt for information on the software availability and distribution.
-
-## Resources
-
-* [Official site](https://instantcms.ru/)
-* [Add-ons for CMS](https://addons.instantcms.ru/)
-* [Documentation](https://docs.instantcms.ru/en)
-* [Russian documentation](https://docs.instantcms.ru/)
-* [Russian README](https://github.com/instantsoft/icms2/blob/master/README.RU.md)
+* [Официальный сайт](https://instantcms.ru/)
+* [Дополнения](https://addons.instantcms.ru/)
+* [Документация](https://docs.instantcms.ru/)

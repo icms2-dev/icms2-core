@@ -25,20 +25,6 @@ function grid_migrations($controller){
             },
             'width'   => 80
         ),
-        'rating' => array(
-            'title'   => LANG_RATING,
-            'handler' => function($val) {
-                return $val ? $val : '&mdash;';
-            },
-            'width'  => 80
-        ),
-        'karma' => array(
-            'title'   => LANG_KARMA,
-            'handler' => function($val) {
-                return $val ? $val : '&mdash;';
-            },
-            'width' => 80
-        ),
         'is_active' => array(
             'title' => LANG_ON,
             'flag'  => true,

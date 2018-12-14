@@ -106,16 +106,6 @@
     define('LANG_CP_FOLDERS',                   'Private folders');
     define('LANG_CP_FOLDERS_ON',                'Private folders enabled');
     define('LANG_CP_FOLDERS_HINT',              'Users will be able to organize the content in the private folders shown in their profiles');
-    define('LANG_CP_CT_GROUPS',                 'Groups');
-    define('LANG_CP_CT_GROUPS_ALLOW',           'Create in groups');
-    define('LANG_CP_CT_GROUPS_ALLOW_ONLY',      'Create in groups only');
-    define('LANG_CP_COMMENTS',                  'Comments');
-    define('LANG_CP_COMMENTS_ON',               'Enable comments');
-    define('LANG_CP_RATING',                    'Rating');
-    define('LANG_CP_RATING_ON',                 'Enable rating');
-    define('LANG_CP_TAGS_ON',                   'Enable tags');
-    define('LANG_CP_TAGS_IN_LIST',              'Show tags in list view');
-    define('LANG_CP_TAGS_IN_ITEM',              'Show tags in entry view');
     define('LANG_CP_PHOTOS',                    'Images');
     define('LANG_CP_PHOTOS_ON',                 'Main image');
     define('LANG_CP_PHOTOS_MULTI',              'Additional images');
@@ -450,11 +440,8 @@
 
     define('LANG_CP_SETTINGS_CACHE_CLEAN',      'Clear cache');
 
-    define('LANG_CP_ADDONS_DATA_ERROR',         'Error getting data, try again later.');
-    define('LANG_CP_ADDONS_CURL_ERROR',         'Browse the add-ons catalog failed, because CURL is not available on the server. You can select addons from a <a target="_blank" href="https://addons.instantcms.ru/">official add-ons catalog</a>.');
-    define('LANG_CP_INSTALL_PACKAGE_LINK_HINT', 'For example, by copying a download link from the <a target="_blank" href="https://addons.instantcms.ru/">official add-ons catalog</a>');
-    define('LANG_CP_INSTALL_BY_LINK',           'Install from URL');
-    define('LANG_CP_OFICIAL_ADDONS',            'Add-ons catalog');
+    define('LANG_CP_INSTALL_PACKAGE_LINK_HINT', 'For example, by copying a download link');
+	define('LANG_CP_INSTALL_BY_LINK',           'Install from URL');
     define('LANG_CP_INSTALL_PACKAGE',           'Install Extension Package');
     define('LANG_CP_DO_INSTALL',                'Install');
     define('LANG_CP_DO_UPDATE',                 'Update');
@@ -558,21 +545,6 @@
     define('LANG_CP_BACK_TO_SITE',              'Back to Site');
     define('LANG_CP_3RDPARTY_CREDITS',          'Third-party credits');
 
-    define('LANG_MODERATOR_ADD',             'Add moderator');
-    define('LANG_MODERATOR_ADD_HINT',        'Enter the email of a user whom you want to assign as a moderator');
-    define('LANG_MODERATOR_APPROVED_COUNT',  'Approved');
-    define('LANG_MODERATOR_DELETED_COUNT',   'Deleted');
-    define('LANG_MODERATOR_IDLE_COUNT',      'Idle');
-    define('LANG_MODERATOR_ASSIGNED_DATE',   'Assigned');
-    define('LANG_MODERATOR_TRASH_LEFT_TIME', 'Trash items lifetime');
-    define('LANG_MODERATOR_ALREADY',         'User %s is already a moderator');
-    define('LANG_MODERATORATION_OPTIONS',    'Moderation options');
-    define('LANG_MODERATION_TRASH_NO_REMOVE', 'Evermore');
-    define('LANG_MODERATION_NOT_NEEDED',      'Not needed');
-    define('LANG_MODERATION_IN_TRASH',        'In the trash');
-    define('LANG_MODERATION_IN_TRASH_TIME',   'Is in the trash, will be deleted through %s');
-    define('LANG_MODERATION_LOGS',            'Moderation logs');
-
     define('LANG_CP_SCHEDULER',                     'Scheduler');
     define('LANG_CP_SCHEDULER_TASK',                'Task');
     define('LANG_CP_SCHEDULER_TASK_ADD',            'Add Task');
@@ -613,7 +585,6 @@
     define('LANG_HELP_URL_CTYPES_DATASET',          'https://docs.instantcms.ru/en/manual/ctypes/datasets/add');
     define('LANG_HELP_URL_CTYPES_RELATIONS',        'https://docs.instantcms.ru/en/manual/ctypes/relations');
     define('LANG_HELP_URL_CTYPES_PERMS',            'https://docs.instantcms.ru/en/manual/ctypes/permissions');
-    define('LANG_HELP_URL_CTYPES_MODERATORS',       'https://docs.instantcms.ru/en/manual/ctypes/moderators');
     define('LANG_HELP_URL_MENU',                    'https://docs.instantcms.ru/en/manual/menu');
     define('LANG_HELP_URL_WIDGETS',                 'https://docs.instantcms.ru/en/manual/widgets');
     define('LANG_HELP_URL_WIDGETS_CFG',             'https://docs.instantcms.ru/en/manual/widgets/config');
@@ -622,22 +593,11 @@
     define('LANG_HELP_URL_INSTALL',                 'https://docs.instantcms.ru/en/manual/addons');
     define('LANG_HELP_URL_COM_REDIRECT',            'https://docs.instantcms.ru/en/manual/components/redirect');
     define('LANG_HELP_URL_COM_AUTH',                'https://docs.instantcms.ru/en/manual/components/auth');
-    define('LANG_HELP_URL_COM_ACTIVITY',            'https://docs.instantcms.ru/en/manual/components/activity');
-    define('LANG_HELP_URL_COM_GROUPS',              'https://docs.instantcms.ru/en/manual/components/groups');
     define('LANG_HELP_URL_COM_RECAPTCHA',           'https://docs.instantcms.ru/en/manual/components/recaptcha');
-    define('LANG_HELP_URL_COM_COMMENTS',            'https://docs.instantcms.ru/en/manual/components/comments');
 	define('LANG_HELP_URL_COM_IMAGES',				'https://docs.instantcms.ru/en/manual/components/images');
-	define('LANG_HELP_URL_COM_SUBSCRIPTIONS',		'https://docs.instantcms.ru/en/manual/components/subscriptions');
     define('LANG_HELP_URL_COM_USERS',               'https://docs.instantcms.ru/en/manual/components/users');
-    define('LANG_HELP_URL_COM_MODERATION',          'https://docs.instantcms.ru/en/manual/components/moderation');
     define('LANG_HELP_URL_COM_USERS_MIGRATON',      'https://docs.instantcms.ru/en/manual/components/users/migrations');
-    define('LANG_HELP_URL_COM_MARKITUP',            'https://docs.instantcms.ru/en/manual/components/markitup');
-    define('LANG_HELP_URL_COM_RATING',              'https://docs.instantcms.ru/en/manual/components/rating');
     define('LANG_HELP_URL_COM_SEARCH',              'https://docs.instantcms.ru/en/manual/components/search');
-    define('LANG_HELP_URL_COM_TAGS',                'https://docs.instantcms.ru/en/manual/components/tags');
-    define('LANG_HELP_URL_COM_RSS',                 'https://docs.instantcms.ru/en/manual/components/rss');
-    define('LANG_HELP_URL_COM_SITEMAP',             'https://docs.instantcms.ru/en/manual/components/sitemap');
-	define('LANG_HELP_URL_COM_PHOTOS',				'https://docs.instantcms.ru/en/manual/components/photos');
     define('LANG_HELP_URL_USERS',                   'https://docs.instantcms.ru/en/manual/users');
     define('LANG_HELP_URL_USERS_USER',              'https://docs.instantcms.ru/en/manual/users/user');
     define('LANG_HELP_URL_USERS_GROUP',             'https://docs.instantcms.ru/en/manual/users/group');
@@ -657,7 +617,6 @@
     define('LANG_ZIP_ERROR_5', 'Read error');
     define('LANG_ZIP_ERROR_4', 'Seek error');
     define('LANG_INSTALL_NOTICE_SYSTEM_FILE', 'Attention! Package replaces some CMS system files. It is not recommended to continue the installation package if you are unsure of the developer.');
-    define('LANG_ADMIN_NOTICES', 'Notifications');
     define('LANG_ADMIN_ACCESS_DENIED_BY_IP', 'Access from your ip address is restricted');
     define('LANG_MAILCHECK_ERROR', 'When sending a letter error occurred: <br><b>%s</b>');
     define('LANG_MAILCHECK_SUCCESS', 'A letter has been sent successfully');

@@ -23,7 +23,6 @@
 
     define('LANG_USERS_EDIT_PROFILE_MAIN',  'Info');
     define('LANG_USERS_EDIT_PROFILE_THEME', 'Theme');
-    define('LANG_USERS_EDIT_PROFILE_NOTICES', 'Notifications');
     define('LANG_USERS_EDIT_PROFILE_PRIVACY', 'Privacy');
 
     define('LANG_USERS_CFG_FIELDS',         'Profile Fields');
@@ -37,11 +36,6 @@
     define('LANG_USERS_OPT_MAX_TABS',       'Maximum number of tabs');
     define('LANG_USERS_OPT_MAX_TABS_HINT',  'Other tabs will be hidden under the «More...» item<br>0 — unlimited number');
     define('LANG_USERS_OPT_AUTH_ONLY',      'Allow to view profiles only to authorized users');
-    define('LANG_USERS_OPT_WALL_ENABLED',   'Enable profile wall');
-    define('LANG_USERS_OPT_STATUSES_ENABLED',   'Enable profile status');
-    define('LANG_USERS_OPT_KARMA_COMMENTS', 'Explain reputation vote');
-    define('LANG_USERS_OPT_KARMA_TIME',     'Reputation voting period, days');
-    define('LANG_USERS_OPT_KARMA_TIME_HINT','A user will be able to vote for another user\'s reputation only once in a specified period');
 
     define('LANG_USERS_MIG_TITLE',              'Rule title');
     define('LANG_USERS_MIG_IS_ACTIVE',          'Rule is active');
@@ -58,21 +52,14 @@
     define('LANG_USERS_MIG_PASSED_FROM',        'From');
     define('LANG_USERS_MIG_PASSED_REG',         'registration');
     define('LANG_USERS_MIG_PASSED_MIG',         'last migration');
-    define('LANG_USERS_MIG_COND_RATING',        'Rating conditions');
-    define('LANG_USERS_MIG_COND_KARMA',         'Reputation conditions');
-    define('LANG_USERS_MIG_RATING',             'Rating higher than');
-    define('LANG_USERS_MIG_KARMA',              'Reputation higher than');
     define('LANG_USERS_MIG_NOTIFY',             'Send migration notification');
     define('LANG_USERS_MIG_NOTIFY_TEXT',        'Notification text');
-
-    define('LANG_USERS_KARMA_COMMENT',      'Please explain your vote');
 
     define('LANG_USERS_OPT_DS_SHOW',        'Show the "%s" tab');
     define('LANG_USERS_DS_LATEST',          'New');
     define('LANG_USERS_DS_POPULAR',         'Popular');
     define('LANG_USERS_DS_SUBSCRIBERS',     'Popular by subscribers');
     define('LANG_USERS_DS_ONLINE',          'Online');
-    define('LANG_USERS_DS_RATED',           'Rating');
     define('LANG_USERS_DS_DATE_LOG',        'Last visit');
 
     define('LANG_USERS_OPT_FILTER_SHOW',    'Show filter');
@@ -82,36 +69,13 @@
     define('LANG_USERS_PROFILE_INDEX',      'Profile');
     define('LANG_USERS_PROFILE_CONTENT',    'Content');
     define('LANG_USERS_PROFILE_FRIENDS',    'Friends');
-    define('LANG_USERS_PROFILE_ACTIVITY',   'Activity');
     define('LANG_USERS_PROFILE_FEED',       'Feed');
 
     define('LANG_USERS_PROFILE_WALL',       'User Wall');
 
     define('LANG_USERS_PROFILE_REGDATE',    'Registered');
-    define('LANG_USERS_PROFILE_INVITED_BY', 'Invited by');
 
     define('LANG_USERS_PROFILE_IS_HIDDEN',  'Private information is hidden in privacy settings');
-
-    define('LANG_USERS_FRIENDS',            'Friends');
-    define('LANG_USERS_FRIENDS_ADD',        'Add to Friends');
-    define('LANG_USERS_FRIENDS_DELETE',     'Remove from Friends');
-    define('LANG_USERS_KEEP_IN_SUBSCRIBERS', 'Keep in subscribers');
-    define('LANG_USERS_FRIENDS_CONFIRM',    'Send friendship request to user %s?');
-    define('LANG_USERS_SUBSCRIBE_CONFIRM',    'Subscribe to %s\'s news?');
-    define('LANG_USERS_UNSUBSCRIBE_CONFIRM',    'Unsubscribe from user %s?');
-    define('LANG_USERS_FRIENDS_DELETE_CONFIRM', 'Delete user <b>%s</b> from your friend list?');
-    define('LANG_USERS_FRIENDS_SUBSCRIBE_CONFIRM', 'Delete user <b>%s</b> from your friend list, keeping in subscribers?');
-    define('LANG_USERS_FRIENDS_SENT',       'Friendship request was sent');
-    define('LANG_USERS_SUBSCRIBE_SUCCESS',  'You have successfully subscribed');
-    define('LANG_USERS_UNSUBSCRIBE_SUCCESS',  'You have successfully unsubscribed');
-    define('LANG_USERS_FRIENDS_DELETED',    '%s was removed from your friend list');
-    define('LANG_USERS_FRIENDS_DECLINED',   '%s declined your friendship request');
-    define('LANG_USERS_KEEP_IN_SUBSCRIBERS_NOTICE',   '%s keep you in subscribers');
-    define('LANG_USERS_FRIENDS_NOTICE',     '%s invites you to become friends');
-    define('LANG_USERS_FRIENDS_DONE',       '%s became your friend');
-    define('LANG_USERS_SUBSCRIBE_DONE',     '%s subscribed to you');
-    define('LANG_USERS_UNSUBSCRIBE_DONE',   '%s unsubscribed from you');
-    define('LANG_USERS_FRIENDS_UNDONE',     '%s stopped being your friend');
 
     define('LANG_USERS_NOTIFY_VIA_NONE',    'Do not notify');
     define('LANG_USERS_NOTIFY_VIA_EMAIL',   'By e-mail');
@@ -129,12 +93,9 @@
     define('LANG_USERS_PRIVACY_FRIENDSHIP',    'Who can send me requests for friendship?');
     define('LANG_USERS_PRIVACY_PROFILE_VIEW',  'Who can view your profile?');
     define('LANG_USERS_PRIVACY_PROFILE_WALL',  'Who can write on your wall?');
-    define('LANG_USERS_PRIVACY_PROFILE_WALL_REPLY', 'Who can comment on my wall posts?');
     define('LANG_USERS_PRIVACY_PROFILE_CTYPE',  'Who can view your %s list?');
 
     define('LANG_USERS_FRIENDS_SPELLCOUNT', 'friend|friends|friends');
-
-    define('LANG_USERS_ACTIVITY_FRIENDS',   'and %s become friends');
 
     define('LANG_USERS_LOCKED_NOTICE',          'Your profile was blocked.');
     define('LANG_USERS_LOCKED_NOTICE_PUBLIC',   'Blocked');
@@ -144,20 +105,6 @@
     define('LANG_USERS_WHAT_HAPPENED',          'What’s new, %s?');
     define('LANG_USERS_DELETE_STATUS_CONFIRM',   'Delete current status?');
 
-    define('LANG_RULE_USERS_VOTE_KARMA',        'Voting for reputation');
-
-    define('LANG_USERS_KARMA_LOG',          'Reputation history');
-    define('LANG_USERS_KARMA_LOG_EMPTY',    'No votes yet');
-
-    define('LANG_USERS_MY_INVITES',         'My invites');
-    define('LANG_USERS_INVITES_LINKS',      'Or distribute links for an invitation');
-    define('LANG_USERS_INVITES_COUNT',      'You can send %s');
-    define('LANG_USERS_INVITES_SPELLCOUNT', 'invite|invites|invites');
-    define('LANG_USERS_INVITES_EMAIL',      'E-mail that is used to send an invite');
-    define('LANG_USERS_INVITES_EMAILS',     'E-mails that are used to send invites');
-    define('LANG_USERS_INVITES_EMAILS_HINT','One e-mail address per line');
-    define('LANG_USERS_INVITES_SENT_TO',    'Invites were successfully sent');
-    define('LANG_USERS_INVITES_FAILED_TO',  'Failed to send invites');
     define('LANG_USERS_SESSIONS',  'Sessions');
     define('LANG_USERS_SESSIONS_DELETE',  'Session successfully closed');
     define('LANG_SESS_DESKTOP',  'Desktop PC');

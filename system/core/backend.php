@@ -14,9 +14,6 @@ class cmsBackend extends cmsController {
         'use_queue_action' => false
     );
 
-    protected $useDefaultModerationAction = false;
-    protected $useModerationTrash = false;
-
     public function __construct( cmsRequest $request){
 
         $this->name = str_replace('backend', '', strtolower(get_called_class()));
@@ -35,13 +32,6 @@ class cmsBackend extends cmsController {
             $this->backend_menu[] = array(
                 'title' => sprintf(LANG_CP_QUEUE_TITLE, $this->queue['queue_name']),
                 'url'   => href_to($this->root_url, 'queue')
-            );
-        }
-
-        if(!empty($this->useDefaultModerationAction)){
-            $this->backend_menu[] = array(
-                'title' => LANG_MODERATORS,
-                'url'   => href_to($this->root_url, 'moderators')
             );
         }
 
@@ -384,122 +374,6 @@ class cmsBackend extends cmsController {
         cmsQueue::deleteJob(array('id' => $job_id));
 
         $this->redirectBack();
-
-    }
-
-    //============================================================================//
-    //=========                         Модераторы                       =========//
-    //============================================================================//
-
-    public function actionModerators(){
-
-        if (empty($this->useDefaultModerationAction)){ cmsCore::error404(); }
-
-        $moderators = $this->model_moderation->getContentTypeModerators($this->name);
-
-        $template_params = array(
-            'title'         => $this->title,
-            'not_use_trash' => !$this->useModerationTrash,
-            'moderators'    => $moderators
-        );
-
-        $this->cms_template->addToolButton(array(
-            'class'  => 'settings',
-            'title'  => LANG_MODERATORATION_OPTIONS,
-            'href'   => href_to('admin', 'controllers', array('edit', 'moderation', 'options'))
-        ));
-
-        $this->cms_template->addToolButton(array(
-            'class'  => 'help',
-            'title'  => LANG_HELP,
-            'target' => '_blank',
-            'href'   => LANG_HELP_URL_CTYPES_MODERATORS
-        ));
-
-        // если задан шаблон в контроллере
-        if($this->cms_template->getTemplateFileName('controllers/'.$this->name.'/backend/moderators', true)){
-
-            return $this->cms_template->render('backend/moderators', $template_params);
-
-        } else {
-
-            $default_admin_tpl = $this->cms_template->getTemplateFileName('controllers/admin/controllers_moderators');
-
-            return $this->cms_template->processRender($default_admin_tpl, $template_params);
-
-        }
-
-    }
-
-    public function actionModeratorsAdd(){
-
-        if (!$this->request->isAjax()) { cmsCore::error404(); }
-
-        $name = $this->request->get('name', '');
-        if (!$name) { cmsCore::error404(); }
-
-        $user = cmsCore::getModel('users')->filterEqual('email', $name)->getUser();
-
-        if ($user === false){
-            return $this->cms_template->renderJSON(array(
-                'error'   => true,
-                'message' => sprintf(LANG_CP_USER_NOT_FOUND, $name)
-            ));
-        }
-
-        $moderators = $this->model_moderation->getContentTypeModerators($this->name);
-
-        if (isset($moderators[$user['id']])){
-            return $this->cms_template->renderJSON(array(
-                'error'   => true,
-                'message' => sprintf(LANG_MODERATOR_ALREADY, $user['nickname'])
-            ));
-        }
-
-        $moderator = $this->model_moderation->addContentTypeModerator($this->name, $user['id']);
-
-        if (!$moderator){
-            return $this->cms_template->renderJSON(array(
-                'error'   => true,
-                'message' => LANG_ERROR
-            ));
-        }
-
-        $ctypes_moderator_tpl = $this->cms_template->getTemplateFileName('controllers/admin/ctypes_moderator');
-
-        return $this->cms_template->renderJSON(array(
-            'error' => false,
-            'name'  => $user['nickname'],
-            'html'  => $this->cms_template->processRender($ctypes_moderator_tpl, array(
-                'moderator' => $moderator,
-                'not_use_trash' => !$this->useModerationTrash,
-                'ctype'     => array('name' => $this->name, 'controller' => $this->name)
-            ), new cmsRequest(array(), cmsRequest::CTX_INTERNAL)),
-            'id'    => $user['id']
-        ));
-
-    }
-
-    public function actionModeratorsDelete(){
-
-        if (!$this->request->isAjax()) { cmsCore::error404(); }
-
-        $id = $this->request->get('id', 0);
-        if (!$id) { cmsCore::error404(); }
-
-        $moderators = $this->model_moderation->getContentTypeModerators($this->name);
-
-        if (!isset($moderators[$id])){
-            return $this->cms_template->renderJSON(array(
-                'error' => true
-            ));
-        }
-
-        $this->model_moderation->deleteContentTypeModerator($this->name, $id);
-
-        return $this->cms_template->renderJSON(array(
-            'error' => false
-        ));
 
     }
 

@@ -83,21 +83,6 @@ class formUsersMigration extends cmsForm {
                 'type' => 'fieldset',
                 'childs' => array(
 
-                    new fieldCheckbox('is_rating', array(
-                        'title' => LANG_USERS_MIG_COND_RATING,
-                    )),
-
-                    new fieldNumber('rating', array(
-                        'title' => LANG_USERS_MIG_RATING,
-                    )),
-
-                )
-            ),
-
-            array(
-                'type' => 'fieldset',
-                'childs' => array(
-
                     new fieldCheckbox('is_karma', array(
                         'title' => LANG_USERS_MIG_COND_KARMA,
                     )),

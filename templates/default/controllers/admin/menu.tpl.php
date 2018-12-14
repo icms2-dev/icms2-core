@@ -1,7 +1,7 @@
 <?php
-    $this->addJS('templates/default/js/jquery-cookie.js');
-    $this->addJS('templates/default/js/datatree.js');
-    $this->addCSS('templates/default/css/datatree.css');
+    $this->addTplJSName('jquery-cookie');
+    $this->addTplJSName('datatree');
+    $this->addTplCSSName('datatree');
 
     $this->setPageTitle(LANG_CP_SECTION_MENU);
 

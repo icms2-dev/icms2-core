@@ -1,9 +1,6 @@
 <?php
 class admin extends cmsFrontend {
 
-    const addons_api_key   = '8e13cb202f8bdc27dc765e0448e50d11';
-    const addons_api_point = 'https://addons.instantcms.ru/api/method/';
-
     public $disallow_mapping_redirect = true;
 
     protected $useOptions = true;
@@ -65,8 +62,7 @@ class admin extends cmsFrontend {
 
                 $this->cms_template->setLayoutParams(array(
                     'user' => $this->cms_user,
-                    'update' => ($this->cms_config->is_check_updates ? $this->cms_updater->checkUpdate(true) : array()),
-                    'notices_count' => cmsCore::getModel('messages')->getNoticesCount($this->cms_user->id)
+                    'update' => ($this->cms_config->is_check_updates ? $this->cms_updater->checkUpdate(true) : array())
                 ));
 
             }
@@ -147,13 +143,6 @@ class admin extends cmsFrontend {
                 )
             ),
             array(
-                'title' => LANG_CP_OFICIAL_ADDONS,
-                'url' => href_to($this->name, 'addons_list'),
-                'options' => array(
-                    'class' => 'item-addons'
-                )
-            ),
-            array(
                 'title' => LANG_CP_SECTION_USERS,
                 'url' => href_to($this->name, 'users'),
                 'options' => array(
@@ -206,11 +195,6 @@ class admin extends cmsFrontend {
             array(
                 'title' => LANG_CP_CTYPE_DATASETS,
                 'url' => href_to($this->name, 'ctypes', array('datasets', $id)),
-                'disabled' => ($do == 'add')
-            ),
-            array(
-                'title' => LANG_MODERATORS,
-                'url' => href_to($this->name, 'ctypes', array('moderators', $id)),
                 'disabled' => ($do == 'add')
             ),
             array(
@@ -718,61 +702,6 @@ class admin extends cmsFrontend {
             )));
 
 		return cmsEventsManager::hook('widget_options_full_form', $form);
-
-    }
-
-    public function getAddonsMethod($name, $params = array(), $cacheable = false) {
-
-        if (!function_exists('curl_init')){
-            return false;
-        }
-
-        $cache_file = cmsConfig::get('cache_path').md5($name.serialize($params)).'_addons.dat';
-
-        if($cacheable && is_readable($cache_file)){
-
-            $timedif = (time() - filemtime($cache_file));
-
-            if ($timedif < 10800) { // три часа кэша
-
-                $result = include $cache_file;
-
-                if ($result) {
-                    return $result;
-                } else {
-                    unlink($cache_file);
-                }
-
-            } else {
-                unlink($cache_file);
-            }
-
-        }
-
-        $curl = curl_init();
-
-        curl_setopt($curl, CURLOPT_URL, self::addons_api_point.$name.'?api_key='.self::addons_api_key.'&'.http_build_query($params, '', '&'));
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_TIMEOUT, 5);
-        curl_setopt($curl, CURLOPT_HTTPGET, true);
-
-        $_data = curl_exec($curl);
-        if(!$_data){ return false; }
-
-        $data = json_decode($_data, true);
-
-        curl_close($curl);
-
-        if($data === false){
-            return json_last_error_msg();
-        }
-
-        if($cacheable){
-            file_put_contents($cache_file, '<?php return '.var_export($data, true).';');
-        }
-
-        return $data;
 
     }
 

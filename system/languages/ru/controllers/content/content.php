@@ -30,9 +30,6 @@
     define('LANG_RULE_CONTENT_ADD_CAT',      'Создание категорий');
     define('LANG_RULE_CONTENT_EDIT_CAT',     'Редактирование категорий');
     define('LANG_RULE_CONTENT_DELETE_CAT',   'Удаление категорий');
-    define('LANG_RULE_CONTENT_COMMENT',      'Комментирование');
-    define('LANG_RULE_CONTENT_DISABLE_COMMENTS', 'Отключение комментариев к записи');
-    define('LANG_RULE_CONTENT_RATE',         'Оценка рейтинга');
     define('LANG_RULE_CONTENT_PRIVACY',      'Управление приватностью');
     define('LANG_RULE_CONTENT_VIEW_ALL',     'Просмотр чужих приватных записей');
     define('LANG_RULE_CONTENT_LIMIT',        'Максимальное число записей');
@@ -46,8 +43,6 @@
     define('LANG_PERM_OPTION_ANY', 'Любая дата');
     define('LANG_CONTENT_CATS_ALLOW_ADD',     'Группы, участники которой могут добавлять записи в эту категорию');
     define('LANG_CONTENT_CATS_ALLOW_ADD_HINT', 'Добавление записей для выбранных групп должно быть разрешено');
-    define('LANG_CONTENT_ACTIVITY_ADD',         'Добавление %s');
-    define('LANG_CONTENT_ACTIVITY_ADD_DESC',    'добавляет %s %s');
     define('LANG_CONTENT_SELECT_CATEGORY',   '-- выберите категорию --');
     define('LANG_CONTENT_SELECT_CATEGORIES', 'Кликните, чтобы выбрать дополнительные категории');
     define('LANG_CONTENT_SELECT_FOLDER',     '-- выберите папку --');
@@ -64,5 +59,4 @@
     define('LANG_CONTENT_CONTEXT_LT_ITEM_VIEW_RELATION_LIST', 'В связях, в списке');
     define('LANG_CONTENT_CONTEXT_LT_ITEMS_FROM_FRIENDS', 'В приватных записях друзей');
     define('LANG_CONTENT_CONTEXT_LT_TRASH', 'В корзине');
-    define('LANG_CONTENT_CONTEXT_LT_MODERATION_LIST', 'В списке модерации');
     define('LANG_CONTENT_CONTEXT_LT_PROFILE_CONTENT', 'В профиле');

@@ -2,7 +2,7 @@
 
 class cmsUpdater {
 
-    private $update_info_url = 'http://upd.instantcms.ru/info/%s';
+    private $update_info_url = 'https://api.github.com/repos/icms2-dev/icms2-core/tags';
     private $cache_file = 'cache/update.dat';
 
     const UPDATE_CHECK_ERROR = 0;
@@ -19,15 +19,15 @@ class cmsUpdater {
 
         $current_version = cmsCore::getVersionArray();
 
-        $update_info = $this->getUpdateFileContents($current_version['version'], $only_cached);
+        $update_info = $this->getUpdateFileContents($only_cached);
 
-        if (!$update_info) { return cmsUpdater::UPDATE_CHECK_ERROR; }
+        if (!$update_info) { return self::UPDATE_CHECK_ERROR; }
 
         list($next_version, $date, $url) = explode("\n", trim($update_info));
 
         if (version_compare($next_version, $current_version['version'], '<=')) {
             $this->deleteUpdateFile();
-            return cmsUpdater::UPDATE_NOT_AVAILABLE;
+            return self::UPDATE_NOT_AVAILABLE;
         }
 
         return array(
@@ -39,13 +39,7 @@ class cmsUpdater {
 
     }
 
-    public function getUpdateFileContents($current_version, $only_cached){
-
-        if(function_exists('gethostbyname')){
-            if(gethostbyname(parse_url($this->update_info_url, PHP_URL_HOST)) !== '217.25.226.96'){
-                return false;
-            }
-        }
+    public function getUpdateFileContents($only_cached){
 
         if (file_exists($this->cache_file)){
             return file_get_contents($this->cache_file);
@@ -53,16 +47,21 @@ class cmsUpdater {
             return false;
         }
 
-        $url = sprintf($this->update_info_url, $current_version);
+        $tags = file_get_contents_from_url($this->update_info_url, 2, true);
+	    if ($tags === false) { return false; }
 
-        $data = file_get_contents_from_url($url, 2);
+        $commit = file_get_contents_from_url($tags[0]['commit']['url'], 2, true);
+	    if ($commit === false) { return false; }
 
-        if ($data === false) { return false; }
+		$data = implode("\n",[
+			'version'=>$tags[0]['name'],
+			'date'=>$commit['commit']['author']['date'],
+			'url'=>$tags[0]['zipball_url']
+		]);
 
         file_put_contents($this->cache_file, $data);
 
         return $data;
-
     }
 
     public function deleteUpdateFile(){

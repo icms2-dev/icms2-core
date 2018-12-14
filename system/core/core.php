@@ -113,7 +113,7 @@ class cmsCore {
 
         if (!$show_date && isset($version['date'])) { unset($version['date']); }
 
-        return $version['version'].($show_date ? ' '.LANG_FROM.' '.$version['date'] : '');
+        return $version['version'].($version['type'] ? '-'.$version['type'] : '').($show_date ? ' '.LANG_FROM.' '.$version['date'] : '');
 
     }
 
@@ -140,10 +140,10 @@ class cmsCore {
 
             self::$core_version = array(
                 'date'    => $version['date'],
+                'type'    => $version['type'],
                 'version' => $version['major'] .'.'. $version['minor'] .'.'. $version['build'],
                 'raw'     => $version
             );
-
         }
 
         return self::$core_version;
@@ -810,7 +810,7 @@ class cmsCore {
             $user = cmsUser::getInstance();
 
             if($user->is_admin){
-                $template->addJS('templates/default/js/widgets.js');
+                $template->addTplJSName('widgets');
                 cmsCore::loadControllerLanguage('admin');
             }
 
@@ -1086,7 +1086,7 @@ class cmsCore {
      */
     public static function getTemplates(){
 
-        return self::getDirsList('templates');
+        return self::getDirsList('templates/');
 
     }
 

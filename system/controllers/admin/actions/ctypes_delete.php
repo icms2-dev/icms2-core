@@ -34,8 +34,6 @@ class actionAdminCtypesDelete extends cmsAction {
             }
         }
 
-        cmsCore::getController('activity')->deleteType('content', "add.{$ctype['name']}");
-
         $this->redirectToAction('ctypes');
 
     }

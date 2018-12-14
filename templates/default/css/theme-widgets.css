@@ -170,10 +170,6 @@ aside .widget_tabbed > .tabs .links a {
 .widget_content_list .details a:hover{ color:#d35400; }
 
 .widget_content_list .details span {padding-right: 5px;}
-.widget_content_list .details span.comments {
-    padding-left:20px;
-    background: url("../images/icons/comment-small.png") no-repeat left center;
-}
 
 .widget_content_list.featured .item .title { font-size:14px; }
 .widget_content_list.featured .item-first { float:left; margin-right:15px; width:33%; }
@@ -338,89 +334,6 @@ aside .widget_tabbed > .tabs .links a {
   }
 }
 
-/* ========================================================================== */
-
-.widget_activity_list { overflow: hidden; }
-
-.widget_activity_list h4 { margin:0; margin-bottom: 5px; }
-
-.widget_activity_list .item { margin-bottom: 15px; overflow: hidden; }
-.widget_activity_list .item:last-child { margin-bottom: 0; }
-
-.widget_activity_list .item > .image, .widget_comments_list .item .image { float:left; margin-right: 10px; position: relative; }
-.widget_activity_list .item > .image img, .widget_comments_list .item .image img { display: block; border-radius: 50%; }
-.widget_activity_list .item .info { line-height:17px; padding-top:2px; }
-
-.widget_activity_list .item .title{ }
-.widget_activity_list .item .title a.author{ color:#376499; }
-.widget_activity_list .item .title a.author:hover{ color:#d35400; }
-
-.widget_activity_list .item .details { font-size:11px; }
-.widget_activity_list .item .details .date { color:#999; }
-.widget_activity_list .item .details .reply {
-    padding-left: 5px;
-}
-.widget_activity_list .item .details .reply a {
-    padding-left: 20px;
-    background:url("../images/icons/comment-small.png") no-repeat left center;
-    color:#BDC3C7;
-}
-
-.widget_activity_list .item .details .reply a:hover {
-    color:#d35400;
-}
-
-.widget_activity_list .item .images { overflow: hidden; margin:10px 0; padding-left:48px; }
-.widget_activity_list .item .images .image {
-    float:left; margin-right:2px;
-    display:block; overflow: hidden;
-}
-.widget_activity_list .item .images .image.more {
-    background: #ecf0f1;
-    text-align: center;
-    line-height: 64px;
-    font-size:18px;
-}
-.widget_activity_list .item .images .image.more a {
-    display:block; width: 64px; height:64px; overflow: hidden;
-    color:#7f8c8d;
-    text-decoration: none;
-}
-.widget_activity_list .item .images .image.more a:hover {
-    color:#2c3e50;
-}
-.widget_activity_list .item .actions {
-    float:right;
-    visibility: hidden;
-}
-
-.widget_activity_list .item:hover .actions {
-    visibility: visible;
-}
-
-.widget_activity_list .actions .delete{
-    display:inline-block;
-    width:16px;
-    height:16px;
-    background:url("../images/icons/delete.png") no-repeat center;
-}
-/* ========================================================================== */
-
-.widget_comments_list { overflow: hidden; line-height: 20px; }
-
-.widget_comments_list .item { margin-bottom: 15px; overflow: hidden; }
-.widget_comments_list .item:last-child { margin-bottom: 0; }
-
-.widget_comments_list .item .info { line-height:17px; padding-top:2px; }
-.widget_comments_list .item .title a.author{ color:#376499; }
-.widget_comments_list .item .title a.author:hover{ color:#d35400; }
-
-.widget_comments_list .item .title a.subject{ padding-right: 5px; }
-
-.widget_comments_list .item .date { font-size:11px; color:#999; padding-right: 5px; }
-.widget_comments_list .item .text { color:#666; }
-
-/* ========================================================================== */
 
 .widget_profiles_list { overflow: hidden; }
 
@@ -593,38 +506,6 @@ header .widget_user_avatar .menu ul {
 header .widget_user_avatar .menu ul li, header .widget_user_avatar .menu ul li a {
     border-radius: 0;
 }
-/* ========================================================================== */
-
-.widget_tags_cloud .tags_as_list,
-.widget_tags_cloud .tags_as_list li,
-.widget_tags_cloud .tags_as_cloud,
-.widget_tags_cloud .tags_as_cloud li {
-    margin:0; padding:0;
-    list-style:none;
-}
-
-.widget_tags_cloud .tags_as_cloud {
-    overflow: hidden;
-}
-
-.widget_tags_cloud .tags_as_cloud li {
-    float:left;
-    margin:0 8px 8px 0;
-}
-
-.widget_tags_cloud .tags_as_list li {
-    margin:0 0 6px 0;
-    padding-left:20px;
-    background: url("../images/icons/tag.png") no-repeat left center;
-}
-
-.widget_tags_cloud .tags_as_list li .counter {
-    font-size:11px;
-}
-.widget_tags_cloud li.colored > a {
-    color: inherit;
-}
-/* ========================================================================== */
 
 .widget_auth .field { overflow: hidden; }
 .widget_auth .field a { float:right; font-size:12px; margin-top:4px; }

@@ -94,28 +94,6 @@ class auth extends cmsFrontend {
         $form = $this->getForm('registration');
 
         //
-        // Добавляем поле для кода приглашения,
-        // если регистрация доступна только по приглашениям
-        //
-        if ($this->options['is_reg_invites'] || $this->request->has('inv')){
-
-            $fieldset_id = $form->addFieldsetToBeginning(!$this->options['is_reg_invites'] ? '' : LANG_REG_INVITED_ONLY);
-
-            $form->addField($fieldset_id, new fieldString('inv', array(
-                'title' => LANG_REG_INVITE_CODE,
-                'attributes' => array(
-                    'readonly' => !$this->options['is_reg_invites'] ? true : false
-                ),
-                'rules' => array(
-                    array('required'),
-                    array('min_length', 10),
-                    array('max_length', 10)
-                )
-            )));
-
-        }
-
-        //
         // Добавляем поле выбора группы,
         // при наличии публичных групп
         //

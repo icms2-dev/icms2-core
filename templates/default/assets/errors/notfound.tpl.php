@@ -5,7 +5,8 @@
 <html>
 <head>
 	<title><?php echo ERR_PAGE_NOT_FOUND; ?></title>
-    <link type="text/css" rel="stylesheet" href="<?php echo $config->root; ?>templates/default/css/theme-errors.css">
+	<?php $this->addMainTplCSSName('theme-errors'); ?>
+	<?php $this->head(false); ?>
 </head>
 <body>
 

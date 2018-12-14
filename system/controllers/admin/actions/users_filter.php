@@ -6,17 +6,6 @@ class actionAdminUsersFilter extends cmsAction {
 
         $fields  = cmsCore::getModel('content')->setTablePrefix('')->getContentFields('{users}');
 
-        $fields[] = array(
-            'title' => LANG_RATING,
-            'name' => 'rating',
-            'handler' => new fieldNumber('rating')
-        );
-
-        $fields[] = array(
-            'title' => LANG_KARMA,
-            'name' => 'karma',
-            'handler' => new fieldNumber('karma')
-        );
 
         $fields[] = array(
             'title' => LANG_USER_IS_ADMIN,

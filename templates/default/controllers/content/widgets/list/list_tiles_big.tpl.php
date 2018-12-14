@@ -38,17 +38,6 @@
                             <span class="date">
                                 <?php html(string_date_age_max($item['date_pub'], true)); ?>
                             </span>
-                            <?php if($ctype['is_comments']){ ?>
-                                <span class="comments">
-                                    <?php if ($url) { ?>
-                                        <a href="<?php echo $url . '#comments'; ?>" title="<?php echo LANG_COMMENTS; ?>">
-                                            <?php echo intval($item['comments']); ?>
-                                        </a>
-                                    <?php } else { ?>
-                                        <?php echo intval($item['comments']); ?>
-                                    <?php } ?>
-                                </span>
-                            <?php } ?>
                         </div>
                     <?php } ?>
                     <div class="title">

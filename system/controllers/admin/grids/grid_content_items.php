@@ -22,7 +22,7 @@ function grid_content_items($controller, $ctype_name=false){
         ),
         'title' => array(
             'title' => LANG_TITLE,
-            'href' => href_to($ctype_name, 'edit',  '{id}') . '?back=' . href_to($controller->name, 'content'),
+            'href' => href_to($controller->name, 'content', array('item_edit', $ctype_name, '{id}')) . '?back=' . href_to($controller->name, 'content'),
             'filter' => 'like'
         ),
         'date_pub' => array(
@@ -33,35 +33,6 @@ function grid_content_items($controller, $ctype_name=false){
                     return '<span rel="set_class" data-class="is_deleted">'.html_date($value, true).'</span>';
                 }
                 return html_date($value, true);
-            }
-        ),
-        'is_approved' => array(
-            'title' => LANG_MODERATION,
-            'width' => 150,
-            'handler' => function($value, $item) use ($controller, $ctype_name){
-                if($item['is_deleted']){
-                    $string = '<a href="'.href_to($controller->name, 'controllers', array('edit', 'moderation', 'logs', 'content', $ctype_name, $item['id'])).'">';
-                    if($item['trash_date_expired']){
-                        $expired = ((time() - strtotime($item['trash_date_expired'])) > 0) ? true : false;
-                        $string .= sprintf(LANG_MODERATION_IN_TRASH_TIME, ($expired ? '-' : '').string_date_age_max($item['trash_date_expired']));
-                    } else {
-                        $string .= LANG_MODERATION_IN_TRASH;
-                    }
-                    $string .= '</a>';
-                    return $string;
-                }
-                if($item['is_approved']){
-                    if($item['approved_by']){
-                        return html_bool_span(LANG_MODERATION_SUCCESS, true);
-                    } else {
-                        return html_bool_span(LANG_MODERATION_NOT_NEEDED, true);
-                    }
-                } else {
-                    if(!empty($item['is_draft'])){
-                        return html_bool_span(LANG_CONTENT_DRAFT_NOTICE, false);
-                    }
-                    return html_bool_span(LANG_CONTENT_NOT_APPROVED, false);
-                }
             }
         ),
         'is_pub' => array(

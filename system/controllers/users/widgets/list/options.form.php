@@ -26,8 +26,6 @@ class formWidgetUsersListOptions extends cmsForm {
                         'title' => LANG_WD_USERS_LIST_DATASET,
                         'items' => array(
                             'latest'      => LANG_USERS_DS_LATEST,
-                            'subscribers' => LANG_USERS_DS_SUBSCRIBERS,
-                            'rating'      => LANG_USERS_DS_RATED,
                             'popular'     => LANG_USERS_DS_POPULAR,
                             'date_log'    => LANG_USERS_DS_DATE_LOG
                         )

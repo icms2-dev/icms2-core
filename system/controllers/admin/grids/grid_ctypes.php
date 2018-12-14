@@ -73,11 +73,6 @@ function grid_ctypes($controller){
             'href' => href_to($controller->name, 'ctypes', array('datasets', '{id}'))
         ),
         array(
-            'title' => LANG_MODERATORS,
-            'class' => 'user',
-            'href' => href_to($controller->name, 'ctypes', array('moderators', '{id}'))
-        ),
-        array(
             'title' => LANG_DELETE,
             'class' => 'delete',
             'href' => href_to($controller->name, 'ctypes', array('delete', '{id}')),

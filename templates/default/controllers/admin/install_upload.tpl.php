@@ -9,12 +9,6 @@
         'href'   => LANG_HELP_URL_INSTALL
     ));
 
-    $this->addToolButton(array(
-        'class' => 'addons',
-        'title' => LANG_CP_OFICIAL_ADDONS,
-        'href'  => $this->href_to('addons_list')
-    ));
-
 ?>
 
 <h1><?php echo LANG_CP_INSTALL_PACKAGE; ?></h1>

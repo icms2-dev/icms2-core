@@ -1,9 +1,9 @@
 <?php
 
-    $this->addJS('templates/default/js/jquery-cookie.js');
-    $this->addJS('templates/default/js/datatree.js');
-    $this->addJS('templates/default/js/admin-widgets.js');
-    $this->addCSS('templates/default/css/datatree.css');
+    $this->addTplJSName('jquery-cookie');
+    $this->addTplJSName('datatree');
+    $this->addTplJSName('admin-widgets');
+    $this->addTplCSSName('datatree');
 
     $this->setPageTitle(LANG_CP_SECTION_WIDGETS);
     $this->addBreadcrumb(LANG_CP_SECTION_WIDGETS, $this->href_to('widgets'));

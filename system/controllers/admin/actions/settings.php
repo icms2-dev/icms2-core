@@ -111,11 +111,11 @@ class actionAdminSettings extends cmsAction {
         $templates_has_options = array();
 
         $tpls = cmsCore::getTemplates();
-        foreach ($tpls as $tpl) {
-            if(file_exists($this->cms_config->root_path.'templates/'.$tpl.'/options.form.php')){
-                $templates_has_options[] = $tpl;
-            }
-        }
+	    foreach ($tpls as $tpl) {
+		    if(file_exists($this->cms_config->root_path.'templates/'.$tpl.'/options.form.php')){
+			    $templates_has_options[] = $tpl;
+		    }
+	    }
 
         return $this->cms_template->render('settings', array(
             'templates_has_options' => $templates_has_options,

@@ -103,29 +103,6 @@ class actionUsersProfileEdit extends cmsAction {
                 // Отдельно обновляем часовой пояс в сессии
                 cmsUser::sessionSet('user:time_zone', $profile['time_zone']);
 
-                // Постим уведомление о смене аватара в ленту
-                if (!$this->model->isAvatarsEqual($new['avatar'], $old['avatar'])){
-                    $activity_controller = cmsCore::getController('activity');
-                    $activity_controller->deleteEntry($this->name, 'avatar', $profile['id']);
-					if (!empty($new['avatar'])){
-						$activity_controller->addEntry($this->name, 'avatar', array(
-							'user_id'       => $profile['id'],
-                            'subject_title' => $profile['nickname'],
-                            'subject_id'    => $profile['id'],
-                            'subject_url'   => href_to_rel('users', $profile['id']),
-                            'is_private'    => 0,
-                            'group_id'      => null,
-                            'images'        => array(
-                                array(
-                                    'url' => href_to_rel('users', $profile['id']),
-                                    'src' => html_image_src($new['avatar'], $fields['avatar']['options']['size_full'])
-                                )
-                            ),
-                            'images_count'  => 1
-                        ));
-					}
-                }
-
                 $content = cmsCore::getController('content', $this->request);
 
                 $parents = $content->model->getContentTypeParents(null, $this->name);

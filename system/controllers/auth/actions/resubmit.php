@@ -36,12 +36,15 @@ class actionAuthResubmit extends cmsAction {
         $to = array('email' => $reg_user['email'], 'name' => $reg_user['nickname']);
         $letter = array('name' => 'reg_verify');
 
+        # TODO сделать отправку почты
+        /*
         cmsCore::getController('messages')->sendEmail($to, $letter, array(
             'nickname'    => $reg_user['nickname'],
             'page_url'    => href_to_abs('auth', 'verify', $reg_user['pass_token']),
             'pass_token'  => $reg_user['pass_token'],
             'valid_until' => html_date(date('d.m.Y H:i', time() + ($verify_exp * 3600)), true)
         ));
+        */
 
         cmsUser::addSessionMessage(sprintf(LANG_REG_SUCCESS_NEED_VERIFY, $reg_user['email']), 'info');
 

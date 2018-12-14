@@ -15,10 +15,9 @@ class onUsersContentViewHidden extends cmsAction {
 
             if (!$this->cms_user->is_logged){ $data['viewable'] = false; return $data; }
 
-            $is_friend           = $this->cms_user->isFriend($item['user_id']);
             $is_can_view_private = cmsUser::isAllowed($ctype['name'], 'view_all');
 
-            if (!$is_friend && !$is_can_view_private && !$is_moderator){
+            if (!$is_can_view_private && !$is_moderator){
 
                 $data['access_text'] = sprintf(
                     LANG_CONTENT_PRIVATE_FRIEND_INFO,

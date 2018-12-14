@@ -207,7 +207,6 @@ class actionContentCategoryView extends cmsAction {
 
         $list_header = empty($ctype['labels']['list']) ? $ctype['title'] : $ctype['labels']['list'];
         $page_header = !empty($category['title']) ? $category['title'] : $list_header;
-        $rss_query   = !empty($category['id']) ? "?category={$category['id']}" : '';
 
         $base_url = $this->cms_config->ctype_default == $ctype['name'] ? '' : $ctype['name'];
         $base_ds_url = href_to_rel($ctype['name']) . '%s' . (isset($category['slug']) ? '/'.$category['slug'] : '');
@@ -263,7 +262,6 @@ class actionContentCategoryView extends cmsAction {
         return $this->cms_template->render($tpl_file, array(
             'base_ds_url'     => $base_ds_url,
             'base_url'        => $base_url,
-            'rss_query'       => $rss_query,
             'page_header'     => $page_header,
             'list_styles'     => $list_styles,
             'is_frontpage'    => $is_frontpage,

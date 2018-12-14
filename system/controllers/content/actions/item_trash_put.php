@@ -38,17 +38,8 @@ class actionContentItemTrashPut extends cmsAction {
         // общее для всех значение
         $trash_left_time = intval(cmsUser::getPermissionValue($ctype['name'], 'trash_left_time'));
 
-        // если удаляет модератор, проверяем его значение
-        $moderator = $this->model->filterEqual('ctype_name', $ctype['name'])->
-                filterEqual('user_id', $this->cms_user->id)->
-                getItem('moderators');
-        if($moderator){
-            if($moderator['trash_left_time'] !== null){
-                $trash_left_time = intval($moderator['trash_left_time']);
-            }
-        }
 
-        if((cmsUser::isAllowed($ctype['name'], 'restore') || $moderator) && $trash_left_time){
+        if((cmsUser::isAllowed($ctype['name'], 'restore')) && $trash_left_time){
 
             cmsUser::addSessionMessage(sprintf(LANG_BASKET_DELETE_LEFT_TIME, html_spellcount($trash_left_time, LANG_HOUR1, LANG_HOUR2, LANG_HOUR10)), 'info');
 

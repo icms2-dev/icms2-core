@@ -397,13 +397,6 @@ class content extends cmsFrontend {
 //============================================================================//
 //============================================================================//
 
-    /**
-     * DEPRECATED
-     * use cmsCore::getController('moderation')->requestModeration($ctype_name, $item, $is_new_item);
-     */
-    public function requestModeration($ctype_name, $item, $is_new_item = true){
-        return cmsCore::getController('moderation')->requestModeration($ctype_name, $item, $is_new_item);
-    }
 
     public function getCategoryForm($ctype, $action){
 
@@ -640,20 +633,6 @@ class content extends cmsFrontend {
                     'rules' => array(array('number'))
                 )));
             }
-
-        }
-
-        // если разрешено отключать комментарии к записи
-        if(cmsUser::isAllowed($ctype['name'], 'disable_comments') && $ctype['is_comments']){
-
-            $fieldset_id = $form->addFieldset(LANG_RULE_CONTENT_COMMENT, 'is_comment', array('is_collapsed' => !empty($ctype['options']['is_collapsed']) && in_array('is_comment', $ctype['options']['is_collapsed'])));
-            $form->addField($fieldset_id, new fieldList('is_comments_on', array(
-				'default' => 1,
-				'items' => array(
-					1 => LANG_YES,
-					0 => LANG_NO
-				)
-			)));
 
         }
 
@@ -1099,18 +1078,6 @@ class content extends cmsFrontend {
         list($datasets, $ctype) = cmsEventsManager::hook('content_'.$ctype['name'].'_datasets', array($datasets, $ctype));
 
         return $datasets;
-
-    }
-
-    public function getContentTypeForModeration($name){
-
-        if(is_numeric($name)){
-            $ctype = $this->model->getContentType($name);
-        } else {
-            $ctype = $this->model->getContentTypeByName($name);
-        }
-
-        return $ctype;
 
     }
 

@@ -254,6 +254,8 @@ function file_get_contents_from_url($url, $timeout = 5, $json_decode = false){
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
+	    curl_setopt($curl,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36');
+
         $data = curl_exec($curl);
         curl_close($curl);
 

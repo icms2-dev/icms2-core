@@ -33,18 +33,6 @@
                         </span>
                     </div>
 
-                    <div class="title<?php if ($entry['comment']){ ?>-multiline<?php } ?>">
-
-                        <a href="<?php echo $this->href_to($entry['user']['id']); ?>"><?php html($entry['user']['nickname']); ?></a>
-                        <span class="date"><?php echo string_date_age_max($entry['date_pub'], true); ?></span>
-
-                        <?php if ($entry['comment']){ ?>
-                            <div class="comment">
-                                <?php html($entry['comment']); ?>
-                            </div>
-                        <?php } ?>
-                    </div>
-
                 </div>
 
             <?php } ?>

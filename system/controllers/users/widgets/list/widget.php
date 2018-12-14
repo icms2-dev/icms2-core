@@ -42,11 +42,7 @@ class widgetUsersList extends cmsWidget {
         switch ($dataset){
             case 'latest': $model->orderBy('date_reg', 'desc');
                 break;
-            case 'rating': $model->orderBy('karma desc, rating desc');
-                break;
             case 'popular': $model->orderBy('friends_count', 'desc');
-                break;
-            case 'subscribers': $model->orderBy('subscribers_count', 'desc');
                 break;
             case 'date_log': $model->orderBy('date_log', 'desc');
                 break;

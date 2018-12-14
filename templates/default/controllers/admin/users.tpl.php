@@ -1,8 +1,8 @@
 <?php
-    $this->addJS('templates/default/js/jquery-cookie.js');
-    $this->addJS('templates/default/js/datatree.js');
-    $this->addCSS('templates/default/css/datatree.css');
-    $this->addJS('templates/default/js/admin-content.js');
+    $this->addTplJSName('jquery-cookie');
+    $this->addTplJSName('datatree');
+    $this->addTplCSSName('datatree');
+    $this->addTplJSName('admin-content');
 
     $this->setPageTitle(LANG_CP_SECTION_USERS);
 
@@ -21,14 +21,6 @@
         'href'  => null,
         'onclick' => "return contentCancelFilter()"
     ));
-
-    if(cmsController::enabled('messages')){
-        $this->addToolButton(array(
-            'class' => 'transfer',
-            'title' => LANG_CP_USER_PMAILING,
-            'href'  => $this->href_to('controllers', array('edit', 'messages', 'pmailing'))
-        ));
-    }
 
     $this->addToolButton(array(
         'class' => 'settings',
@@ -131,7 +123,6 @@
                             icms.datagrid.setURL("<?php echo $this->href_to('users'); ?>/" + key);
                             $('.cp_toolbar .filter a').attr('href', "<?php echo $this->href_to('users', array('filter')); ?>/" + key[0]);
                             $('.cp_toolbar .add a').attr('href', "<?php echo $this->href_to('users', 'add'); ?>/" + key);
-                            $('.cp_toolbar .transfer a').attr('href', "<?php echo $this->href_to('controllers', array('edit', 'messages', 'pmailing')); ?>/" + key);
                             if (key == 0){
                                 $('.cp_toolbar .edit a').hide();
                                 $('.cp_toolbar .permissions a').hide();
